@@ -1,0 +1,157 @@
+:root {
+  /* Red & Orange Palette */
+  --primary: #B91C1C; /* Deep Red */
+  --primary-light: #DC2626; /* Red */
+  --secondary: #F97316; /* Orange */
+  --secondary-light: #FFEDD5; /* Light Orange */
+  
+  --background: #FFFFFF;
+  --text: #450a0a; /* Dark red-brown instead of black */
+  --text-light: #7f1d1d; 
+  
+  --low-risk: #F97316; 
+  --warning: #F97316;
+  --high-risk: #B91C1C;
+  --danger: #DC2626;
+
+  --bg-alt: #fff5f5;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorative blurred shapes behind sections */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  opacity: 0.3;
+}
+body::before {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: var(--secondary-light);
+}
+body::after {
+  bottom: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: #fecaca;
+}
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 38, 38, 0.15); /* Soft red border */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(185, 28, 28, 0.05);
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Backward compatibility for old cards */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(185, 28, 28, 0.05);
+  padding: 1.5rem;
+}
+
+.high-contrast {
+  --primary: #991b1b;
+  --primary-light: #b91c1c;
+  --secondary: #c2410c;
+  --secondary-light: #ffedd5;
+  --background: #ffffff;
+  --text: #000000;
+  --text-light: #222222;
+}
+.high-contrast body::before, .high-contrast body::after {
+  display: none;
+}
+.high-contrast .glass-card, .high-contrast .card {
+  border: 2px solid #000;
+  background: #fff;
+  box-shadow: none;
+}
+
+.text-large { font-size: 115%; }
+.text-xlarge { font-size: 135%; }
+
+.btn {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border: 2px solid var(--primary-light);
+  color: var(--primary);
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+.btn-primary:hover {
+  background: var(--primary-light);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { 
+  from { opacity: 0; transform: translateY(15px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+.fade-in { animation: fadeIn 0.4s ease-in; }
+.slide-up { 
+  opacity: 0; 
+  animation: slideUp 0.4s ease-out forwards; 
+}
