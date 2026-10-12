@@ -184,7 +184,7 @@ const Home = () => {
 
       {/* Emergency Banner */}
       <div className="glass-card fade-in" style={{ 
-        background: 'linear-gradient(135deg, rgba(255, 59, 48, 0.25) 0%, rgba(11, 18, 38, 0.45) 100%)', 
+        background: 'linear-gradient(135deg, rgba(255, 59, 48, 0.12) 0%, rgba(11, 18, 38, 0.10) 100%)', 
         border: '1.5px solid rgba(255, 59, 48, 0.45)', 
         color: '#F8FAFC', 
         textAlign: 'center', 
