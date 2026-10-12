@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer style={{ 
-      background: 'rgba(5, 8, 22, 0.45)', 
+      background: 'rgba(5, 8, 22, 0.12)', 
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       color: '#F8FAFC', 
