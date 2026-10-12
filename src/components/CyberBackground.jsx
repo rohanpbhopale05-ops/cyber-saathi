@@ -385,14 +385,12 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
       {/* 4. Canvas for Circuit Board Traces, Pulses, Binary Digits, & Dust Particles */}
       <canvas ref={canvasRef} className="cyber-bg-canvas" />
 
-      {/* 5. Central Digital Lock Luminous Energy Atmosphere (Hero mode only) */}
-      {!isSubdued && (
-        <div className="cyber-lock-center-glow">
-          <div className="cyber-lock-ripple cyber-ripple-1"></div>
-          <div className="cyber-lock-ripple cyber-ripple-2"></div>
-          <div className="cyber-lock-light-sweep"></div>
-        </div>
-      )}
+      {/* 5. Central Digital Lock Luminous Energy Atmosphere */}
+      <div className={`cyber-lock-center-glow ${isSubdued ? 'subdued-lock' : ''}`}>
+        <div className="cyber-lock-ripple cyber-ripple-1"></div>
+        <div className="cyber-lock-ripple cyber-ripple-2"></div>
+        <div className="cyber-lock-light-sweep"></div>
+      </div>
 
       {/* 6. Dark Tech Vignette & Color Balance Overlay */}
       <div className="cyber-vignette-overlay"></div>
