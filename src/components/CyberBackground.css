@@ -241,9 +241,9 @@
   inset: 0;
   background: radial-gradient(
     ellipse at center, 
-    rgba(5, 8, 22, 0.25) 0%, 
-    rgba(5, 8, 22, 0.65) 70%, 
-    rgba(5, 8, 22, 0.92) 100%
+    rgba(5, 8, 22, 0.04) 0%, 
+    rgba(5, 8, 22, 0.28) 65%, 
+    rgba(5, 8, 22, 0.65) 100%
   );
   z-index: 3;
   pointer-events: none;
@@ -251,26 +251,30 @@
 
 /* 7. Subdued Mode for Secondary Pages (Forms, Reports, Dashboards) */
 .cyber-background-container.subdued-mode .cyber-bg-layer-base {
-  opacity: 0.22;
-  filter: contrast(1.1) brightness(0.85) saturate(0.9);
+  opacity: 0.68;
+  filter: contrast(1.15) brightness(1.04) saturate(1.15);
 }
 
 .cyber-background-container.subdued-mode .cyber-ambient-orb {
-  opacity: 0.4;
-  filter: blur(80px);
+  opacity: 0.78;
+  filter: blur(65px);
 }
 
 .cyber-background-container.subdued-mode .cyber-bg-canvas {
-  opacity: 0.45;
+  opacity: 0.85;
 }
 
 .cyber-background-container.subdued-mode .cyber-vignette-overlay {
   background: radial-gradient(
     ellipse at center, 
-    rgba(5, 8, 22, 0.7) 0%, 
-    rgba(5, 8, 22, 0.88) 60%, 
-    rgba(5, 8, 22, 0.98) 100%
+    rgba(5, 8, 22, 0.15) 0%, 
+    rgba(5, 8, 22, 0.38) 65%, 
+    rgba(5, 8, 22, 0.75) 100%
   );
+}
+
+.cyber-lock-center-glow.subdued-lock {
+  opacity: 0.55;
 }
 
 /* Accessibility: prefers-reduced-motion fallback */
