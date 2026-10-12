@@ -232,7 +232,7 @@ const AdminDashboard = () => {
         {activeTab === 'reports' && (
           <>
             <div style={{ display: 'flex', gap: '1.2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-              <div style={{ flex: 1, display: 'flex', alignItems: 'center', background: 'rgba(11, 18, 38, 0.85)', padding: '0.6rem 1.2rem', borderRadius: '14px', border: '1.5px solid var(--border-glass)' }}>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', background: 'rgba(11, 18, 38, 0.5)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', padding: '0.6rem 1.2rem', borderRadius: '14px', border: '1.5px solid var(--border-glass)' }}>
                 <Search size={22} color="var(--cyan-highlight)" style={{ marginRight: '10px' }} />
                 <input 
                   type="text" 
