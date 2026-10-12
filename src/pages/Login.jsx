@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Lock } from 'lucide-react';
 import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 
@@ -61,22 +62,72 @@ const Login = () => {
   };
 
   return (
-    <div className="fade-in" style={{ maxWidth: '500px', margin: '4rem auto', padding: '2rem 0' }}>
-      <div className="glass-card">
+    <div className="fade-in" style={{ maxWidth: '540px', margin: '2.5rem auto 4rem', padding: '1rem 0' }}>
+      <div className="glass-card" style={{ padding: '3rem 2.5rem', borderTop: '4px solid var(--cyan-highlight)' }}>
         
-        <div style={{ display: 'flex', borderBottom: '2px solid #e2e8f0', marginBottom: '2rem' }}>
-          <button 
-            onClick={() => { setIsLogin(true); setErrorMsg(''); setSuccessMsg(''); }}
-            style={{ flex: 1, padding: '1rem', fontSize: '1.2rem', fontWeight: 'bold', border: 'none', background: 'none', borderBottom: isLogin ? '4px solid var(--primary)' : '4px solid transparent', cursor: 'pointer' }}
-          >Login</button>
-          <button 
-            onClick={() => { setIsLogin(false); setErrorMsg(''); setSuccessMsg(''); }}
-            style={{ flex: 1, padding: '1rem', fontSize: '1.2rem', fontWeight: 'bold', border: 'none', background: 'none', borderBottom: !isLogin ? '4px solid var(--primary)' : '4px solid transparent', cursor: 'pointer' }}
-          >Sign Up</button>
+        {/* Security Vault Lock Icon & Header */}
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div className="glass-icon-box" style={{ width: '64px', height: '64px', borderRadius: '20px', margin: '0 auto 1.2rem', color: 'var(--cyan-highlight)', borderColor: 'var(--border-cyan)', boxShadow: 'var(--glow-cyan)' }}>
+            <Lock size={32} />
+          </div>
+          <h2 style={{ fontSize: '2.2rem', color: '#F8FAFC', fontWeight: '900', margin: '0 0 0.5rem 0', letterSpacing: '-0.02em' }}>
+            {isLogin ? 'Citizen Portal Login' : 'Register New Account'}
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', margin: 0 }}>
+            Secure access to your incident reports & alerts
+          </p>
         </div>
 
-        {errorMsg && <div style={{ padding: '1rem', backgroundColor: '#fee2e2', color: '#b91c1c', borderRadius: '8px', marginBottom: '1.5rem', fontWeight: 'bold' }}>{errorMsg}</div>}
-        {successMsg && <div style={{ padding: '1rem', backgroundColor: 'var(--bg-alt)', color: 'var(--primary)', borderRadius: '8px', marginBottom: '1.5rem', fontWeight: 'bold' }}>{successMsg}</div>}
+        {/* Capsule Tabs */}
+        <div style={{ display: 'flex', gap: '10px', background: 'rgba(255, 255, 255, 0.05)', padding: '6px', borderRadius: '999px', marginBottom: '2.5rem', border: '1px solid var(--border-glass)' }}>
+          <button 
+            type="button"
+            onClick={() => { setIsLogin(true); setErrorMsg(''); setSuccessMsg(''); }}
+            className={`glass-capsule ${isLogin ? 'active' : ''}`}
+            style={{ 
+              flex: 1, 
+              justifyContent: 'center',
+              padding: '0.75rem', 
+              fontSize: '1.15rem', 
+              fontWeight: '700', 
+              background: isLogin ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'transparent',
+              color: isLogin ? '#050816' : 'var(--text-secondary)',
+              border: isLogin ? '1px solid var(--cyan-highlight)' : '1px solid transparent',
+              boxShadow: isLogin ? 'var(--glow-cyan)' : 'none'
+            }}
+          >
+            Login
+          </button>
+          <button 
+            type="button"
+            onClick={() => { setIsLogin(false); setErrorMsg(''); setSuccessMsg(''); }}
+            className={`glass-capsule ${!isLogin ? 'active' : ''}`}
+            style={{ 
+              flex: 1, 
+              justifyContent: 'center',
+              padding: '0.75rem', 
+              fontSize: '1.15rem', 
+              fontWeight: '700', 
+              background: !isLogin ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'transparent',
+              color: !isLogin ? '#050816' : 'var(--text-secondary)',
+              border: !isLogin ? '1px solid var(--cyan-highlight)' : '1px solid transparent',
+              boxShadow: !isLogin ? 'var(--glow-cyan)' : 'none'
+            }}
+          >
+            Sign Up
+          </button>
+        </div>
+
+        {errorMsg && (
+          <div style={{ padding: '1rem 1.2rem', backgroundColor: 'rgba(255, 59, 48, 0.15)', border: '1px solid var(--red-security)', color: '#ff6b6b', borderRadius: '12px', marginBottom: '1.5rem', fontWeight: 'bold', fontSize: '1.1rem' }}>
+            {errorMsg}
+          </div>
+        )}
+        {successMsg && (
+          <div style={{ padding: '1rem 1.2rem', backgroundColor: 'rgba(16, 185, 129, 0.15)', border: '1px solid var(--low-risk)', color: '#34d399', borderRadius: '12px', marginBottom: '1.5rem', fontWeight: 'bold', fontSize: '1.1rem' }}>
+            {successMsg}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="slide-up">
           
@@ -102,14 +153,14 @@ const Login = () => {
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} required minLength="6" placeholder="Minimum 6 characters" />
           </div>
           
-          <Button type="submit" variant="primary" style={{ width: '100%', marginTop: '1rem', padding: '1.2rem', fontSize: '1.2rem' }} disabled={isLoading}>
-            {isLoading ? 'Processing...' : (isLogin ? 'Login to Dashboard' : 'Create Account')}
+          <Button type="submit" variant="primary" style={{ width: '100%', marginTop: '1.5rem', padding: '1.2rem', fontSize: '1.25rem', borderRadius: '999px' }} disabled={isLoading}>
+            {isLoading ? 'Processing Security Clearance...' : (isLogin ? 'Login to Dashboard' : 'Create Account')}
           </Button>
         </form>
 
         {!supabase && (
-          <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--text-light)', fontSize: '1.1rem', fontWeight: 'bold' }}>
-            Demo Mode – No real account is required.
+          <p style={{ textAlign: 'center', marginTop: '1.8rem', color: 'var(--text-muted)', fontSize: '1.05rem', fontWeight: '600' }}>
+            Offline/Demo Mode – Instant access enabled.
           </p>
         )}
 

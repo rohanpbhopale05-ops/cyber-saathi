@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { Search, ShieldAlert, ShieldCheck, AlertTriangle, AlertOctagon, Smartphone, Link as LinkIcon, MessageSquare } from 'lucide-react';
+import { 
+  Search, 
+  ShieldAlert, 
+  ShieldCheck, 
+  AlertTriangle, 
+  AlertOctagon, 
+  Smartphone, 
+  Link as LinkIcon, 
+  MessageSquare,
+  Radio,
+  CheckCircle2
+} from 'lucide-react';
 import Button from '../components/Button';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -68,15 +79,13 @@ const CheckScam = () => {
         });
       }
 
-      riskScore = Math.min(riskScore, 100);
-
-      let level = 'LOW RISK';
+      let level = "LOW RISK";
       if (riskScore >= 70) {
-        level = 'HIGH RISK';
-        recommendation = "Do not share OTP, PIN or payment information. Block the number and delete the message.";
-      } else if (riskScore >= 40) {
-        level = 'SUSPICIOUS';
-        recommendation = "Proceed with caution. Verify the sender's identity through official channels before sharing any information.";
+        level = "HIGH RISK";
+        recommendation = "Do not interact! Block the sender immediately. Never share OTPs, passwords, or install any remote screen-sharing apps.";
+      } else if (riskScore >= 30) {
+        level = "SUSPICIOUS";
+        recommendation = "Proceed with extreme caution. Verify independently by visiting your bank branch or calling official customer care.";
       } else {
         recommendation = "No immediate red flags detected, but always stay vigilant and do not share sensitive information like OTPs or PINs.";
       }
@@ -89,7 +98,7 @@ const CheckScam = () => {
       });
       setIsAnalyzing(false);
 
-    }, 800);
+    }, 850);
   };
 
   const handleCheck = () => {
@@ -98,117 +107,215 @@ const CheckScam = () => {
   };
 
   const getUIConfig = (level) => {
-    if (level === 'HIGH RISK') return { color: 'var(--high-risk)', icon: <AlertOctagon size={48} color="var(--high-risk)" /> };
-    if (level === 'SUSPICIOUS') return { color: 'var(--warning)', icon: <AlertTriangle size={48} color="var(--warning)" /> };
-    return { color: 'var(--text)', icon: <ShieldCheck size={48} color="var(--text)" /> };
+    if (level === 'HIGH RISK') return { 
+      color: 'var(--red-security)', 
+      bg: 'rgba(255, 59, 48, 0.15)',
+      border: 'var(--red-security)',
+      glow: 'var(--glow-red)',
+      icon: <AlertOctagon size={44} color="var(--red-security)" /> 
+    };
+    if (level === 'SUSPICIOUS') return { 
+      color: 'var(--orange-signal)', 
+      bg: 'rgba(255, 122, 24, 0.15)',
+      border: 'var(--orange-signal)',
+      glow: 'var(--glow-orange)',
+      icon: <AlertTriangle size={44} color="var(--orange-signal)" /> 
+    };
+    return { 
+      color: 'var(--low-risk)', 
+      bg: 'rgba(16, 185, 129, 0.15)',
+      border: 'var(--low-risk)',
+      glow: '0 0 25px rgba(16, 185, 129, 0.3)',
+      icon: <ShieldCheck size={44} color="var(--low-risk)" /> 
+    };
   };
 
   return (
-    <div className="fade-in" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 0' }}>
+    <div className="fade-in" style={{ maxWidth: '960px', margin: '0 auto', padding: '1rem 0 3rem' }}>
+      
+      {/* Page Title & Cyber Badge */}
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '3rem', color: 'var(--primary)', marginBottom: '1rem', fontWeight: '800' }}>{t("Check Before You Trust")}</h1>
-        <p style={{ fontSize: '1.4rem', color: 'var(--text-light)' }}>
-          Paste a phone number, web link, or message below to check for red flags.
+        <span className="glass-capsule glass-capsule-cyan" style={{ fontSize: '0.95rem', padding: '0.35rem 1.15rem', marginBottom: '1rem' }}>
+          <Radio size={16} color="var(--cyan-highlight)" />
+          <span>Real-Time Threat Scanner</span>
+        </span>
+        <h1 style={{ fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', color: '#F8FAFC', fontWeight: '900', letterSpacing: '-0.02em', marginTop: '0.8rem', marginBottom: '1rem' }}>
+          {t("Check Before You Trust")}
+        </h1>
+        <p style={{ fontSize: '1.35rem', color: 'var(--text-secondary)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
+          Paste a phone number, web link, or message below to check for fraud indicators and suspicious patterns.
         </p>
       </div>
 
-      <div className="glass-card slide-up">
+      <div className="glass-card slide-up" style={{ padding: '2.5rem' }}>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+        {/* Tab Selection as Glass Capsules */}
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2.5rem' }}>
           <button 
             onClick={() => {setActiveTab('phone'); setResult(null); setInputValue('');}}
+            className={`glass-capsule ${activeTab === 'phone' ? 'active' : ''}`}
             style={{ 
-              padding: '1.5rem', fontSize: '1.3rem', fontWeight: 'bold', 
-              border: activeTab === 'phone' ? '3px solid var(--primary)' : '2px solid transparent',
-              backgroundColor: activeTab === 'phone' ? 'var(--bg-alt)' : 'rgba(255,255,255,0.5)',
-              borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
-              transition: 'all 0.2s', color: 'var(--text)'
+              padding: '0.8rem 1.8rem', 
+              fontSize: '1.2rem', 
+              fontWeight: '700',
+              background: activeTab === 'phone' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'rgba(255, 255, 255, 0.06)',
+              color: activeTab === 'phone' ? '#050816' : 'var(--text-primary)',
+              borderColor: activeTab === 'phone' ? 'var(--cyan-highlight)' : 'var(--border-glass)',
+              boxShadow: activeTab === 'phone' ? 'var(--glow-cyan)' : 'none',
+              cursor: 'pointer'
             }}
           >
-            <Smartphone size={28} color={activeTab === 'phone' ? 'var(--primary)' : 'var(--text)'} />
-            {t("PHONE NUMBER")}
+            <Smartphone size={22} color={activeTab === 'phone' ? '#050816' : 'var(--cyan-highlight)'} />
+            <span>{t("PHONE NUMBER")}</span>
           </button>
+
           <button 
             onClick={() => {setActiveTab('url'); setResult(null); setInputValue('');}}
+            className={`glass-capsule ${activeTab === 'url' ? 'active' : ''}`}
             style={{ 
-              padding: '1.5rem', fontSize: '1.3rem', fontWeight: 'bold', 
-              border: activeTab === 'url' ? '3px solid var(--primary)' : '2px solid transparent',
-              backgroundColor: activeTab === 'url' ? 'var(--bg-alt)' : 'rgba(255,255,255,0.5)',
-              borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
-              transition: 'all 0.2s', color: 'var(--text)'
+              padding: '0.8rem 1.8rem', 
+              fontSize: '1.2rem', 
+              fontWeight: '700',
+              background: activeTab === 'url' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'rgba(255, 255, 255, 0.06)',
+              color: activeTab === 'url' ? '#050816' : 'var(--text-primary)',
+              borderColor: activeTab === 'url' ? 'var(--cyan-highlight)' : 'var(--border-glass)',
+              boxShadow: activeTab === 'url' ? 'var(--glow-cyan)' : 'none',
+              cursor: 'pointer'
             }}
           >
-            <LinkIcon size={28} color={activeTab === 'url' ? 'var(--primary)' : 'var(--text)'} />
-            {t("URL")}
+            <LinkIcon size={22} color={activeTab === 'url' ? '#050816' : 'var(--cyan-highlight)'} />
+            <span>{t("URL")}</span>
           </button>
+
           <button 
             onClick={() => {setActiveTab('message'); setResult(null); setInputValue('');}}
+            className={`glass-capsule ${activeTab === 'message' ? 'active' : ''}`}
             style={{ 
-              padding: '1.5rem', fontSize: '1.3rem', fontWeight: 'bold', 
-              border: activeTab === 'message' ? '3px solid var(--primary)' : '2px solid transparent',
-              backgroundColor: activeTab === 'message' ? 'var(--bg-alt)' : 'rgba(255,255,255,0.5)',
-              borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
-              transition: 'all 0.2s', color: 'var(--text)'
+              padding: '0.8rem 1.8rem', 
+              fontSize: '1.2rem', 
+              fontWeight: '700',
+              background: activeTab === 'message' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'rgba(255, 255, 255, 0.06)',
+              color: activeTab === 'message' ? '#050816' : 'var(--text-primary)',
+              borderColor: activeTab === 'message' ? 'var(--cyan-highlight)' : 'var(--border-glass)',
+              boxShadow: activeTab === 'message' ? 'var(--glow-cyan)' : 'none',
+              cursor: 'pointer'
             }}
           >
-            <MessageSquare size={28} color={activeTab === 'message' ? 'var(--primary)' : 'var(--text)'} />
-            {t("MESSAGE")}
+            <MessageSquare size={22} color={activeTab === 'message' ? '#050816' : 'var(--cyan-highlight)'} />
+            <span>{t("MESSAGE")}</span>
           </button>
         </div>
 
-        <div style={{ display: 'flex', gap: '15px', flexDirection: 'column' }}>
+        {/* Input & Radar Scanner Line */}
+        <div style={{ display: 'flex', gap: '16px', flexDirection: 'column', position: 'relative' }}>
+          {isAnalyzing && (
+            <div className="radar-sweep-bar" aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, zIndex: 10 }}></div>
+          )}
+
           {activeTab === 'message' ? (
             <textarea 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Paste suspicious message here..."
+              placeholder="Paste suspicious SMS, WhatsApp, or email message text here..."
               rows="5"
-              style={{ padding: '1.5rem', fontSize: '1.3rem', border: '2px solid rgba(185,28,28,0.2)', borderRadius: '12px', width: '100%', resize: 'vertical' }}
+              style={{ fontSize: '1.25rem', padding: '1.25rem' }}
             />
           ) : (
             <input 
               type="text" 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder={activeTab === 'phone' ? 'Enter 10-digit number or international number' : 'Enter website link (e.g. http://...)'}
-              style={{ padding: '1.5rem', fontSize: '1.3rem', border: '2px solid rgba(185,28,28,0.2)', borderRadius: '12px', width: '100%' }}
+              placeholder={activeTab === 'phone' ? 'Enter phone number (e.g. +91 9876543210 or 140...)' : 'Enter website link (e.g. http://bank-update-kyc.xyz...)'}
+              style={{ fontSize: '1.25rem', padding: '1.25rem' }}
             />
           )}
           
-          <Button onClick={handleCheck} variant="primary" style={{ padding: '1.5rem', marginTop: '1rem', display: 'flex', justifyContent: 'center', fontSize: '1.4rem', opacity: isAnalyzing ? 0.7 : 1 }}>
-            {isAnalyzing ? t("ANALYZING...") : <><Search size={28} style={{ marginRight: '10px' }} /> {t("CHECK")}</>}
+          <Button 
+            onClick={handleCheck} 
+            variant="primary" 
+            style={{ 
+              padding: '1.2rem', 
+              marginTop: '0.8rem', 
+              fontSize: '1.35rem', 
+              opacity: isAnalyzing ? 0.75 : 1,
+              width: '100%',
+              borderRadius: '999px'
+            }}
+          >
+            {isAnalyzing ? (
+              <span>{t("ANALYZING...")}</span>
+            ) : (
+              <>
+                <Search size={24} /> 
+                <span>{t("CHECK")}</span>
+              </>
+            )}
           </Button>
         </div>
       </div>
 
+      {/* Analysis Results Card */}
       {result && (
-        <div className="glass-card slide-up" style={{ marginTop: '3rem', borderTop: `6px solid ${getUIConfig(result.level).color}` }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '2rem', flexWrap: 'wrap' }}>
-            {getUIConfig(result.level).icon}
+        <div 
+          className="glass-card slide-up" 
+          style={{ 
+            marginTop: '3.5rem', 
+            borderTop: `6px solid ${getUIConfig(result.level).border}`,
+            boxShadow: `0 20px 50px rgba(0,0,0,0.5), ${getUIConfig(result.level).glow}`,
+            background: `linear-gradient(180deg, ${getUIConfig(result.level).bg} 0%, rgba(11, 18, 38, 0.9) 100%)`
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '22px', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+            <div className="glass-icon-box" style={{ width: '70px', height: '70px', borderRadius: '20px', borderColor: getUIConfig(result.level).color, background: getUIConfig(result.level).bg }}>
+              {getUIConfig(result.level).icon}
+            </div>
             <div>
-              <h2 style={{ color: getUIConfig(result.level).color, fontSize: '2.5rem', margin: 0, fontWeight: '900' }}>{t(result.level)}</h2>
-              <p style={{ fontSize: '1.3rem', margin: '0.5rem 0 0 0', fontWeight: 'bold' }}>{t("Risk Score")}: {result.score}/100</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <h2 style={{ color: getUIConfig(result.level).color, fontSize: '2.6rem', margin: 0, fontWeight: '900', letterSpacing: '-0.02em' }}>
+                  {t(result.level)}
+                </h2>
+                <span className="glass-capsule" style={{ fontSize: '0.9rem', padding: '0.3rem 0.85rem', borderColor: getUIConfig(result.level).color }}>
+                  Score: {result.score}/100
+                </span>
+              </div>
+              <p style={{ fontSize: '1.3rem', margin: '0.5rem 0 0 0', color: 'var(--text-secondary)' }}>
+                {t("Risk Score")}: <strong>{result.score}</strong> out of 100
+              </p>
             </div>
           </div>
 
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--text)' }}>Why is this suspicious?</h3>
-            <ul style={{ fontSize: '1.3rem', lineHeight: '1.8', color: 'var(--text-light)' }}>
+          <div style={{ marginBottom: '2.5rem' }}>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '1.2rem', color: '#F8FAFC', fontWeight: '800' }}>
+              Why is this suspicious?
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {result.reasons.map((reason, idx) => (
-                <li key={idx} style={{ marginBottom: '0.5rem' }}>{reason}</li>
+                <div key={idx} className="glass-capsule" style={{ borderRadius: '14px', padding: '0.85rem 1.4rem', justifyContent: 'flex-start', background: 'rgba(255, 255, 255, 0.05)', width: '100%' }}>
+                  <AlertCircle size={20} color={getUIConfig(result.level).color} style={{ flexShrink: 0 }} />
+                  <span style={{ fontSize: '1.2rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>{reason}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
-          <div style={{ backgroundColor: '#fff7ed', padding: '1.5rem', borderRadius: '12px', borderLeft: '6px solid var(--secondary)' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--text)' }}>{t("Recommended Action:")}</h3>
-            <p style={{ fontSize: '1.3rem', margin: 0, lineHeight: '1.6', fontWeight: 'bold', color: 'var(--text-light)' }}>
+          <div style={{ 
+            background: 'rgba(15, 23, 42, 0.85)', 
+            padding: '2rem', 
+            borderRadius: '18px', 
+            border: `1.5px solid ${getUIConfig(result.level).color}`,
+            boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.1)'
+          }}>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: '#F8FAFC', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <CheckCircle2 size={24} color={getUIConfig(result.level).color} />
+              <span>{t("Recommended Action:")}</span>
+            </h3>
+            <p style={{ fontSize: '1.3rem', margin: 0, lineHeight: '1.6', color: 'var(--text-secondary)', fontWeight: '600' }}>
               {result.recommendation}
             </p>
           </div>
           
-          <p style={{ fontSize: '1.1rem', color: 'var(--text-light)', marginTop: '2rem', fontStyle: 'italic', textAlign: 'center' }}>
-            Important Note: This is a demo rule-based scanner. Never claim that a result guarantees safety.
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginTop: '2rem', fontStyle: 'italic', textAlign: 'center' }}>
+            Important Note: This is an automated cyber intelligence rule scanner. Always verify with official authorities before sharing financial data.
           </p>
         </div>
       )}

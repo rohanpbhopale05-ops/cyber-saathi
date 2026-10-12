@@ -124,55 +124,60 @@ const CyberSafety = () => {
   };
 
   return (
-    <div className="fade-in" style={{ padding: '2rem 0', maxWidth: '1000px', margin: '0 auto' }}>
-      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '3rem', color: 'var(--primary)', marginBottom: '1rem', fontWeight: '800' }}>{t("Cyber Safety Tips")}</h1>
-        <p style={{ fontSize: '1.4rem', color: 'var(--text-light)', maxWidth: '750px', margin: '0 auto' }}>
+    <div className="fade-in" style={{ padding: '1rem 0 3.5rem', maxWidth: '1080px', margin: '0 auto' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+        <span className="glass-capsule glass-capsule-cyan" style={{ fontSize: '0.95rem', padding: '0.35rem 1.15rem', marginBottom: '1rem' }}>
+          Educational Defense Guide
+        </span>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.6rem)', color: '#F8FAFC', fontWeight: '900', letterSpacing: '-0.02em', marginTop: '0.8rem', marginBottom: '1rem' }}>
+          {t("Cyber Safety Tips")}
+        </h1>
+        <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', maxWidth: '780px', margin: '0 auto', lineHeight: '1.6' }}>
           Learn about the most common online tricks and how to protect your hard-earned money.
         </p>
         
         <button 
           onClick={handleReadAloud}
           className="btn btn-primary" 
-          style={{ marginTop: '1.8rem', padding: '1rem 2.5rem', fontSize: '1.3rem', display: 'inline-flex', alignItems: 'center', gap: '10px', boxShadow: '0 4px 14px rgba(185, 28, 28, 0.25)' }}
+          style={{ marginTop: '2rem', padding: '1rem 2.8rem', fontSize: '1.3rem', display: 'inline-flex', alignItems: 'center', gap: '12px', borderRadius: '999px' }}
           aria-label={isSpeaking ? "Stop Reading Aloud" : "Read Safety Tips Aloud"}
         >
           {isSpeaking ? (
             <>
-              <PauseCircle size={28} /> STOP READING
+              <PauseCircle size={26} /> <span>STOP READING</span>
             </>
           ) : (
             <>
-              <PlayCircle size={28} /> READ ALOUD
+              <PlayCircle size={26} /> <span>READ ALOUD</span>
             </>
           )}
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2rem' }}>
         {tips.map((tip, index) => (
-          <div key={index} className="glass-card slide-up" style={{ animationDelay: `${index * 0.05}s`, borderTop: '6px solid var(--primary)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '1.5rem' }}>
-              <div style={{ backgroundColor: 'var(--bg-alt)', padding: '1rem', borderRadius: '50%', color: 'var(--primary)', flexShrink: 0 }}>
+          <div key={index} className="glass-card slide-up" style={{ animationDelay: `${index * 0.05}s`, borderTop: '4px solid var(--cyan-highlight)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '1.8rem' }}>
+              <div className="glass-icon-box" style={{ width: '56px', height: '56px', borderRadius: '16px', color: 'var(--cyan-highlight)', borderColor: 'var(--border-cyan)' }}>
                 {tip.icon}
               </div>
-              <h2 style={{ fontSize: '1.6rem', color: 'var(--text)', margin: 0, fontWeight: '800' }}>{t(tip.title)}</h2>
+              <h2 style={{ fontSize: '1.65rem', color: '#F8FAFC', margin: 0, fontWeight: '800' }}>{t(tip.title)}</h2>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ backgroundColor: '#fff7ed', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--secondary)' }}>
-                <strong style={{ display: 'block', color: 'var(--secondary)', marginBottom: '0.4rem', fontSize: '1.1rem' }}>Warning Signs:</strong>
-                <span style={{ fontSize: '1.15rem', color: 'var(--text)', lineHeight: '1.5' }}>{tip.signs}</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              <div style={{ background: 'rgba(255, 122, 24, 0.1)', padding: '1.2rem', borderRadius: '14px', borderLeft: '4px solid var(--orange-signal)' }}>
+                <strong style={{ display: 'block', color: 'var(--orange-signal)', marginBottom: '0.4rem', fontSize: '1.15rem' }}>Warning Signs:</strong>
+                <span style={{ fontSize: '1.18rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>{tip.signs}</span>
               </div>
               
-              <div style={{ backgroundColor: '#fef2f2', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--danger)' }}>
-                <strong style={{ display: 'block', color: 'var(--danger)', marginBottom: '0.4rem', fontSize: '1.1rem' }}>Never Share:</strong>
-                <span style={{ fontSize: '1.15rem', color: 'var(--text)', fontWeight: 'bold', lineHeight: '1.5' }}>{tip.doNot}</span>
+              <div style={{ background: 'rgba(255, 59, 48, 0.12)', padding: '1.2rem', borderRadius: '14px', borderLeft: '4px solid var(--red-security)' }}>
+                <strong style={{ display: 'block', color: 'var(--red-security)', marginBottom: '0.4rem', fontSize: '1.15rem' }}>Never Share:</strong>
+                <span style={{ fontSize: '1.18rem', color: '#ffffff', fontWeight: 'bold', lineHeight: '1.5' }}>{tip.doNot}</span>
               </div>
 
-              <div style={{ backgroundColor: 'var(--bg-alt)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(185,28,28,0.2)', borderLeft: '4px solid var(--primary)' }}>
-                <strong style={{ display: 'block', color: 'var(--primary)', marginBottom: '0.4rem', fontSize: '1.1rem' }}>What To Do:</strong>
-                <span style={{ fontSize: '1.15rem', color: 'var(--primary)', fontWeight: '600', lineHeight: '1.5' }}>{tip.whatToDo}</span>
+              <div style={{ background: 'rgba(34, 211, 238, 0.1)', padding: '1.2rem', borderRadius: '14px', borderLeft: '4px solid var(--cyan-highlight)' }}>
+                <strong style={{ display: 'block', color: 'var(--cyan-highlight)', marginBottom: '0.4rem', fontSize: '1.15rem' }}>What To Do:</strong>
+                <span style={{ fontSize: '1.18rem', color: 'var(--text-primary)', fontWeight: '600', lineHeight: '1.5' }}>{tip.whatToDo}</span>
               </div>
             </div>
           </div>
