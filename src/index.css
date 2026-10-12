@@ -571,7 +571,7 @@ input:focus, select:focus, textarea:focus {
 /* Main Action Hero Cards with Tri-Color Glow */
 .hero-card-report {
   border: 1.5px solid var(--border-orange);
-  background: linear-gradient(180deg, rgba(255, 122, 24, 0.08) 0%, rgba(11, 18, 38, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.42) 100%);
 }
 .hero-card-report:hover {
   border-color: var(--orange-signal);
@@ -581,7 +581,7 @@ input:focus, select:focus, textarea:focus {
 
 .hero-card-check {
   border: 1.5px solid var(--border-cyan);
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, rgba(11, 18, 38, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.12) 0%, rgba(11, 18, 38, 0.42) 100%);
 }
 .hero-card-check:hover {
   border-color: var(--cyan-highlight);
@@ -591,7 +591,7 @@ input:focus, select:focus, textarea:focus {
 
 .hero-card-emergency {
   border: 1.5px solid var(--border-red);
-  background: linear-gradient(180deg, rgba(255, 59, 48, 0.12) 0%, rgba(11, 18, 38, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.16) 0%, rgba(11, 18, 38, 0.45) 100%);
   animation: pulseEmergency 3s ease-in-out infinite;
 }
 .hero-card-emergency:hover {
