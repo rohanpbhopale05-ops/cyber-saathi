@@ -149,59 +149,77 @@ const CheckScam = () => {
 
       <div className="glass-card slide-up" style={{ padding: '2.5rem' }}>
         
-        {/* Tab Selection as Glass Capsules */}
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2.5rem' }}>
+        {/* Tab Selection as Glass Capsules Segmented Bar */}
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(255, 255, 255, 0.05)', padding: '6px', borderRadius: '999px', border: '1px solid rgba(255, 255, 255, 0.18)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', maxWidth: '680px', margin: '0 auto 2.5rem' }}>
           <button 
+            type="button"
             onClick={() => {setActiveTab('phone'); setResult(null); setInputValue('');}}
-            className={`glass-capsule ${activeTab === 'phone' ? 'active' : ''}`}
+            className="glass-capsule"
             style={{ 
-              padding: '0.8rem 1.8rem', 
-              fontSize: '1.2rem', 
+              flex: '1 1 180px',
+              justifyContent: 'center',
+              padding: '0.8rem 1.4rem', 
+              fontSize: '1.15rem', 
               fontWeight: '700',
-              background: activeTab === 'phone' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'rgba(255, 255, 255, 0.06)',
-              color: activeTab === 'phone' ? '#050816' : 'var(--text-primary)',
-              borderColor: activeTab === 'phone' ? 'var(--cyan-highlight)' : 'var(--border-glass)',
+              background: activeTab === 'phone' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'transparent',
+              color: activeTab === 'phone' ? '#050816' : 'var(--text-secondary)',
+              border: activeTab === 'phone' ? '1px solid #FFFFFF' : '1px solid transparent',
               boxShadow: activeTab === 'phone' ? 'var(--glow-cyan)' : 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              transition: 'all 0.25s ease'
             }}
           >
-            <Smartphone size={22} color={activeTab === 'phone' ? '#050816' : 'var(--cyan-highlight)'} />
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px', background: activeTab === 'phone' ? 'rgba(5, 8, 22, 0.2)' : 'rgba(255, 255, 255, 0.08)', borderColor: activeTab === 'phone' ? 'rgba(5, 8, 22, 0.3)' : 'var(--border-glass)' }}>
+              <Smartphone size={18} color={activeTab === 'phone' ? '#050816' : 'var(--cyan-highlight)'} />
+            </span>
             <span>{t("PHONE NUMBER")}</span>
           </button>
 
           <button 
+            type="button"
             onClick={() => {setActiveTab('url'); setResult(null); setInputValue('');}}
-            className={`glass-capsule ${activeTab === 'url' ? 'active' : ''}`}
+            className="glass-capsule"
             style={{ 
-              padding: '0.8rem 1.8rem', 
-              fontSize: '1.2rem', 
+              flex: '1 1 180px',
+              justifyContent: 'center',
+              padding: '0.8rem 1.4rem', 
+              fontSize: '1.15rem', 
               fontWeight: '700',
-              background: activeTab === 'url' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'rgba(255, 255, 255, 0.06)',
-              color: activeTab === 'url' ? '#050816' : 'var(--text-primary)',
-              borderColor: activeTab === 'url' ? 'var(--cyan-highlight)' : 'var(--border-glass)',
+              background: activeTab === 'url' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'transparent',
+              color: activeTab === 'url' ? '#050816' : 'var(--text-secondary)',
+              border: activeTab === 'url' ? '1px solid #FFFFFF' : '1px solid transparent',
               boxShadow: activeTab === 'url' ? 'var(--glow-cyan)' : 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              transition: 'all 0.25s ease'
             }}
           >
-            <LinkIcon size={22} color={activeTab === 'url' ? '#050816' : 'var(--cyan-highlight)'} />
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px', background: activeTab === 'url' ? 'rgba(5, 8, 22, 0.2)' : 'rgba(255, 255, 255, 0.08)', borderColor: activeTab === 'url' ? 'rgba(5, 8, 22, 0.3)' : 'var(--border-glass)' }}>
+              <LinkIcon size={18} color={activeTab === 'url' ? '#050816' : 'var(--cyan-highlight)'} />
+            </span>
             <span>{t("URL")}</span>
           </button>
 
           <button 
+            type="button"
             onClick={() => {setActiveTab('message'); setResult(null); setInputValue('');}}
-            className={`glass-capsule ${activeTab === 'message' ? 'active' : ''}`}
+            className="glass-capsule"
             style={{ 
-              padding: '0.8rem 1.8rem', 
-              fontSize: '1.2rem', 
+              flex: '1 1 180px',
+              justifyContent: 'center',
+              padding: '0.8rem 1.4rem', 
+              fontSize: '1.15rem', 
               fontWeight: '700',
-              background: activeTab === 'message' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'rgba(255, 255, 255, 0.06)',
-              color: activeTab === 'message' ? '#050816' : 'var(--text-primary)',
-              borderColor: activeTab === 'message' ? 'var(--cyan-highlight)' : 'var(--border-glass)',
+              background: activeTab === 'message' ? 'linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight))' : 'transparent',
+              color: activeTab === 'message' ? '#050816' : 'var(--text-secondary)',
+              border: activeTab === 'message' ? '1px solid #FFFFFF' : '1px solid transparent',
               boxShadow: activeTab === 'message' ? 'var(--glow-cyan)' : 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              transition: 'all 0.25s ease'
             }}
           >
-            <MessageSquare size={22} color={activeTab === 'message' ? '#050816' : 'var(--cyan-highlight)'} />
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px', background: activeTab === 'message' ? 'rgba(5, 8, 22, 0.2)' : 'rgba(255, 255, 255, 0.08)', borderColor: activeTab === 'message' ? 'rgba(5, 8, 22, 0.3)' : 'var(--border-glass)' }}>
+              <MessageSquare size={18} color={activeTab === 'message' ? '#050816' : 'var(--cyan-highlight)'} />
+            </span>
             <span>{t("MESSAGE")}</span>
           </button>
         </div>
