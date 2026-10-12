@@ -1,28 +1,98 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Upload, CheckCircle, ShieldAlert, Phone, MessageSquare, Mail, Link as LinkIcon, CreditCard, Share2, HelpCircle } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Upload, CheckCircle, ShieldAlert, Phone, MessageSquare, Mail, Link as LinkIcon, CreditCard, Share2, HelpCircle, FileText, X, Image as ImageIcon } from 'lucide-react';
 import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const ReportScam = () => {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
   const { user, supabase } = useAuth();
   const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [reportId, setReportId] = useState('');
   
+  const [evidencePreview, setEvidencePreview] = useState(null);
+  const [evidenceDetails, setEvidenceDetails] = useState(null);
+
   const [formData, setFormData] = useState({
     scamType: '',
     phone: '',
     url: '',
     message: '',
     evidenceUploaded: false,
+    evidenceFileName: '',
     name: '',
     mobile: '',
     email: '',
     description: ''
   });
+
+  const handleFileSelect = (file) => {
+    if (!file) return;
+
+    const formattedSize = file.size > 1024 * 1024
+      ? `${(file.size / (1024 * 1024)).toFixed(2)} MB`
+      : `${(file.size / 1024).toFixed(1)} KB`;
+
+    setEvidenceDetails({
+      name: file.name,
+      size: formattedSize,
+      type: file.type
+    });
+
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setEvidencePreview(e.target.result);
+        setFormData(prev => ({
+          ...prev,
+          evidenceUploaded: true,
+          evidenceFileName: file.name
+        }));
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setEvidencePreview(null);
+      setFormData(prev => ({
+        ...prev,
+        evidenceUploaded: true,
+        evidenceFileName: file.name
+      }));
+    }
+  };
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleFileSelect(file);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      handleFileSelect(file);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleRemoveFile = (e) => {
+    e.stopPropagation();
+    setEvidencePreview(null);
+    setEvidenceDetails(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    setFormData(prev => ({
+      ...prev,
+      evidenceUploaded: false,
+      evidenceFileName: ''
+    }));
+  };
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -38,6 +108,8 @@ const ReportScam = () => {
     e.preventDefault();
     const newReportId = `CS-2026-${Math.floor(1000 + Math.random() * 9000)}`;
     
+    const finalDescription = formData.description + (formData.evidenceFileName ? `\n\n[Attached Evidence: ${formData.evidenceFileName}]` : '');
+
     const reportPayload = {
       report_id: newReportId,
       user_id: user ? user.id : null,
@@ -46,7 +118,7 @@ const ReportScam = () => {
       email: formData.email || null,
       url: formData.url || null,
       message: formData.message || null,
-      description: formData.description,
+      description: finalDescription,
       risk_level: 'HIGH RISK',
       status: 'Submitted'
     };
@@ -55,7 +127,7 @@ const ReportScam = () => {
       await supabase.from('reports').insert([reportPayload]);
     } else {
       const existing = JSON.parse(localStorage.getItem('cyberSaathiReports') || '[]');
-      localStorage.setItem('cyberSaathiReports', JSON.stringify([{...reportPayload, id: existing.length + 1, created_at: new Date().toISOString()}, ...existing]));
+      localStorage.setItem('cyberSaathiReports', JSON.stringify([{...reportPayload, id: existing.length + 1, created_at: new Date().toISOString(), evidence_name: formData.evidenceFileName || null}, ...existing]));
     }
     
     setReportId(newReportId);
@@ -176,22 +248,90 @@ const ReportScam = () => {
         {currentStep === 3 && (
           <form onSubmit={handleNext} className="slide-up">
             <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>{t("3. Upload Evidence (Optional)")}</h2>
-            <p style={{ marginBottom: '2rem', color: 'var(--text-light)', textAlign: 'center', fontSize: '1.2rem' }}>Please provide any screenshots, photos, or documents that can help us.</p>
+            <p style={{ marginBottom: '2rem', color: 'var(--text-light)', textAlign: 'center', fontSize: '1.2rem' }}>
+              Please attach any screenshot, photo, message export, or document to support your report.
+            </p>
             
+            <input 
+              type="file" 
+              ref={fileInputRef}
+              onChange={handleFileInputChange}
+              accept="image/*,.pdf,.doc,.docx,.txt"
+              style={{ display: 'none' }}
+            />
+
             <div 
-              style={{ border: '3px dashed rgba(185,28,28,0.3)', padding: '4rem 2rem', textAlign: 'center', borderRadius: '16px', cursor: 'pointer', backgroundColor: formData.evidenceUploaded ? '#f0fdf4' : 'rgba(255,255,255,0.8)' }}
-              onClick={() => setFormData({...formData, evidenceUploaded: true})}
+              style={{ 
+                border: formData.evidenceUploaded ? '3px solid var(--primary)' : '3px dashed rgba(185,28,28,0.35)', 
+                padding: '2.5rem 1.5rem', 
+                textAlign: 'center', 
+                borderRadius: '16px', 
+                cursor: 'pointer', 
+                backgroundColor: formData.evidenceUploaded ? 'var(--bg-alt)' : 'rgba(255,255,255,0.85)',
+                transition: 'all 0.2s ease'
+              }}
+              onClick={() => fileInputRef.current?.click()}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
             >
-              {formData.evidenceUploaded ? (
-                <>
-                  <CheckCircle size={60} color="var(--primary)" style={{ margin: '0 auto 1.5rem' }} />
-                  <p style={{ fontSize: '1.4rem', color: 'var(--primary)', fontWeight: 'bold' }}>Evidence attached successfully! (Demo)</p>
-                </>
+              {formData.evidenceUploaded && evidenceDetails ? (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '1rem', color: 'var(--primary)' }}>
+                    <CheckCircle size={36} />
+                    <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>Screenshot / File Attached!</span>
+                  </div>
+
+                  {evidencePreview ? (
+                    <div style={{ margin: '1.5rem auto', maxWidth: '320px', borderRadius: '12px', overflow: 'hidden', border: '2px solid rgba(185,28,28,0.2)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
+                      <img 
+                        src={evidencePreview} 
+                        alt="Evidence Preview" 
+                        style={{ width: '100%', maxHeight: '240px', objectFit: 'contain', display: 'block', backgroundColor: '#fff' }} 
+                      />
+                    </div>
+                  ) : (
+                    <div style={{ margin: '1.5rem auto', padding: '1rem', backgroundColor: '#fff', borderRadius: '12px', display: 'inline-flex', alignItems: 'center', gap: '10px', border: '1px solid #cbd5e1' }}>
+                      <FileText size={32} color="var(--primary)" />
+                      <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{evidenceDetails.name}</span>
+                    </div>
+                  )}
+
+                  <p style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text)', margin: '0.5rem 0' }}>
+                    {evidenceDetails.name} <span style={{ color: 'var(--text-light)', fontWeight: 'normal' }}>({evidenceDetails.size})</span>
+                  </p>
+
+                  <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '15px' }}>
+                    <button 
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      style={{ padding: '0.6rem 1.4rem', fontSize: '1.1rem', backgroundColor: 'white', border: '2px solid var(--primary)', color: 'var(--primary)', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
+                    >
+                      Change File
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={handleRemoveFile}
+                      style={{ padding: '0.6rem 1.4rem', fontSize: '1.1rem', backgroundColor: '#fee2e2', border: '2px solid #ef4444', color: '#b91c1c', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
               ) : (
-                <>
-                  <Upload size={60} color="var(--primary)" style={{ margin: '0 auto 1.5rem' }} />
-                  <p style={{ fontSize: '1.4rem', color: 'var(--text)' }}>Click here to select a photo from your phone or computer</p>
-                </>
+                <div>
+                  <div style={{ backgroundColor: 'var(--bg-alt)', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.2rem', border: '2px solid rgba(185,28,28,0.15)' }}>
+                    <Upload size={40} color="var(--primary)" />
+                  </div>
+                  <h3 style={{ fontSize: '1.5rem', color: 'var(--text)', marginBottom: '0.6rem', fontWeight: 'bold' }}>
+                    Click here to choose a screenshot or photo
+                  </h3>
+                  <p style={{ fontSize: '1.15rem', color: 'var(--text-light)', margin: '0 0 1rem 0' }}>
+                    or drag and drop your file into this box
+                  </p>
+                  <span style={{ display: 'inline-block', backgroundColor: 'rgba(249,115,22,0.1)', color: 'var(--secondary)', padding: '0.4rem 1rem', borderRadius: '20px', fontSize: '1rem', fontWeight: 'bold' }}>
+                    Supports PNG, JPG, JPEG, PDF, Docs
+                  </span>
+                </div>
               )}
             </div>
             
