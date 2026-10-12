@@ -112,14 +112,14 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
         // Color theme: warm red/orange on left, cyan/blue on right
         const theme = isLeft ? 'warm' : 'cool';
         const strokeColor = theme === 'warm' 
-          ? 'rgba(255, 122, 24, 0.18)' 
-          : 'rgba(34, 211, 238, 0.18)';
+          ? 'rgba(255, 122, 24, 0.32)' 
+          : 'rgba(34, 211, 238, 0.32)';
         const pulseColor = theme === 'warm' 
           ? '#FF7A18' 
           : '#22D3EE';
         const glowColor = theme === 'warm' 
-          ? 'rgba(255, 59, 48, 0.8)' 
-          : 'rgba(22, 119, 255, 0.8)';
+          ? 'rgba(255, 59, 48, 0.95)' 
+          : 'rgba(22, 119, 255, 0.95)';
 
         circuitTracks.push({
           path,
@@ -131,14 +131,14 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
         });
 
         // Add 1 or 2 traveling pulses per track
-        const pulseCount = isMob ? 1 : (Math.random() > 0.4 ? 2 : 1);
+        const pulseCount = isMob ? 1 : (Math.random() > 0.35 ? 2 : 1);
         for (let p = 0; p < pulseCount; p++) {
           circuitPulses.push({
             trackIndex: circuitTracks.length - 1,
             progress: Math.random(), // 0 to 1 along the path
-            speed: (0.0015 + Math.random() * 0.0025) * (isSubdued ? 0.6 : 1), // 4-8s duration
-            length: 0.12 + Math.random() * 0.08,
-            headRadius: 2.2 + Math.random() * 1.5,
+            speed: 0.0018 + Math.random() * 0.0028, // 4-7s duration
+            length: 0.14 + Math.random() * 0.08,
+            headRadius: 2.8 + Math.random() * 1.6,
             theme,
             pulseColor,
             glowColor
@@ -147,31 +147,31 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
       }
 
       // Generate floating binary digits (0 and 1)
-      const binaryCount = isMob ? 14 : 28;
+      const binaryCount = isMob ? 16 : 34;
       const chars = ['0', '1'];
       for (let i = 0; i < binaryCount; i++) {
         const x = Math.random() * width;
         const isWarmSide = x < width * 0.48;
         const isCoolSide = x > width * 0.52;
 
-        let color = 'rgba(248, 250, 252, 0.25)';
-        let shadow = 'rgba(34, 211, 238, 0.4)';
+        let color = 'rgba(248, 250, 252, 0.35)';
+        let shadow = 'rgba(34, 211, 238, 0.6)';
         if (isWarmSide) {
-          color = 'rgba(255, 122, 24, 0.35)';
-          shadow = 'rgba(255, 59, 48, 0.6)';
+          color = 'rgba(255, 122, 24, 0.5)';
+          shadow = 'rgba(255, 59, 48, 0.8)';
         } else if (isCoolSide) {
-          color = 'rgba(34, 211, 238, 0.35)';
-          shadow = 'rgba(22, 119, 255, 0.6)';
+          color = 'rgba(34, 211, 238, 0.5)';
+          shadow = 'rgba(22, 119, 255, 0.8)';
         }
 
         binaryDigits.push({
           x,
           y: Math.random() * height,
           char: chars[Math.floor(Math.random() * chars.length)],
-          size: 11 + Math.floor(Math.random() * 6),
-          speedY: (0.15 + Math.random() * 0.35) * (isSubdued ? 0.5 : 1),
-          speedX: (Math.random() - 0.5) * 0.1,
-          opacity: 0.15 + Math.random() * 0.35,
+          size: 12 + Math.floor(Math.random() * 6),
+          speedY: 0.2 + Math.random() * 0.4,
+          speedX: (Math.random() - 0.5) * 0.12,
+          opacity: 0.25 + Math.random() * 0.45,
           color,
           shadow,
           pulsePhase: Math.random() * Math.PI * 2
@@ -179,17 +179,17 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
       }
 
       // Generate subtle glowing ambient particles
-      const particleCount = isMob ? 18 : 38;
+      const particleCount = isMob ? 22 : 46;
       for (let i = 0; i < particleCount; i++) {
         const x = Math.random() * width;
         const isWarm = x < width * 0.5;
         particles.push({
           x,
           y: Math.random() * height,
-          radius: 0.8 + Math.random() * 1.8,
-          speedY: -(0.1 + Math.random() * 0.25) * (isSubdued ? 0.5 : 1),
-          speedX: (Math.random() - 0.5) * 0.2,
-          opacity: 0.2 + Math.random() * 0.5,
+          radius: 1.0 + Math.random() * 2.0,
+          speedY: -(0.12 + Math.random() * 0.3),
+          speedX: (Math.random() - 0.5) * 0.25,
+          opacity: 0.3 + Math.random() * 0.55,
           color: isWarm 
             ? (Math.random() > 0.5 ? '#FF7A18' : '#FF3B30')
             : (Math.random() > 0.5 ? '#22D3EE' : '#1677FF'),
