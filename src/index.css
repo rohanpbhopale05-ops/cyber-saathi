@@ -713,6 +713,9 @@ input:focus, select:focus, textarea:focus {
     animation: none !important;
     transform: none !important;
   }
+  .navbar-header {
+    transition: none !important;
+  }
 }
 
 /* Animations */
