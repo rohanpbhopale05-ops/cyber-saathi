@@ -528,7 +528,7 @@ input:focus, select:focus, textarea:focus {
   width: 90px;
   height: 90px;
   border-radius: 22px;
-  background: rgba(11, 18, 38, 0.9);
+  background: rgba(11, 18, 38, 0.25);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1.8px solid var(--cyan-highlight);
@@ -592,35 +592,38 @@ input:focus, select:focus, textarea:focus {
   transform: translateY(-3px) scale(1.02) !important;
 }
 
-/* Main Action Hero Cards with Tri-Color Glow */
+/* Main Action Hero Cards with Tri-Color Glow (90% Transparent) */
 .hero-card-report {
   border: 1.5px solid var(--border-orange);
-  background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.42) 100%);
+  background: linear-gradient(180deg, rgba(255, 122, 24, 0.08) 0%, rgba(11, 18, 38, 0.10) 100%);
 }
 .hero-card-report:hover {
+  background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.16) 100%);
   border-color: var(--orange-signal);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), var(--glow-orange);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-orange);
   transform: translateY(-4px);
 }
 
 .hero-card-check {
   border: 1.5px solid var(--border-cyan);
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.12) 0%, rgba(11, 18, 38, 0.42) 100%);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, rgba(11, 18, 38, 0.10) 100%);
 }
 .hero-card-check:hover {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.12) 0%, rgba(11, 18, 38, 0.16) 100%);
   border-color: var(--cyan-highlight);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), var(--glow-cyan);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-cyan);
   transform: translateY(-4px);
 }
 
 .hero-card-emergency {
   border: 1.5px solid var(--border-red);
-  background: linear-gradient(180deg, rgba(255, 59, 48, 0.16) 0%, rgba(11, 18, 38, 0.45) 100%);
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.10) 0%, rgba(11, 18, 38, 0.12) 100%);
   animation: pulseEmergency 3s ease-in-out infinite;
 }
 .hero-card-emergency:hover {
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.15) 0%, rgba(11, 18, 38, 0.18) 100%);
   border-color: #ff6b6b;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), var(--glow-red);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-red);
   transform: translateY(-4px);
 }
 
