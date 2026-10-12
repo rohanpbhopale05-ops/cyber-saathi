@@ -120,15 +120,29 @@ const Navbar = ({ toggleHighContrast, cycleTextSize, textSize, isHighContrast })
         
         {/* Streamlined Utility Controls */}
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <button onClick={toggleHighContrast} className="nav-action-btn" aria-label="Toggle High Contrast">
-            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px' }}>
+          <button 
+            type="button"
+            onClick={toggleHighContrast} 
+            className="nav-action-btn" 
+            aria-label="Toggle High Contrast Mode"
+            title="Toggle High Contrast"
+            style={isHighContrast ? { borderColor: '#FFFFFF', background: 'rgba(255, 255, 255, 0.22)', color: '#FFFFFF', boxShadow: '0 0 16px rgba(255, 255, 255, 0.4)' } : {}}
+          >
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px', background: isHighContrast ? '#FFFFFF' : undefined, color: isHighContrast ? '#000000' : undefined }}>
               <Eye size={17} />
             </span>
-            <span>Contrast</span>
+            <span>Contrast{isHighContrast ? ': On' : ''}</span>
           </button>
           
-          <button onClick={cycleTextSize} className="nav-action-btn" aria-label="Toggle Text Size">
-            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px' }}>
+          <button 
+            type="button"
+            onClick={cycleTextSize} 
+            className="nav-action-btn" 
+            aria-label="Toggle Text Size"
+            title="Cycle Text Size: Normal → Large → Extra Large"
+            style={textSize !== 'normal' ? { borderColor: 'var(--cyan-highlight)', background: 'rgba(34, 211, 238, 0.18)', color: '#FFFFFF', boxShadow: '0 0 16px rgba(34, 211, 238, 0.35)' } : {}}
+          >
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '999px', background: textSize !== 'normal' ? 'rgba(34, 211, 238, 0.25)' : undefined, color: textSize !== 'normal' ? 'var(--cyan-highlight)' : undefined }}>
               <Type size={17} />
             </span>
             <span>Size: {textSize === 'normal' ? 'Normal' : textSize === 'large' ? 'Large' : 'XL'}</span>
