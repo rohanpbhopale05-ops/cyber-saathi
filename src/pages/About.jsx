@@ -58,7 +58,7 @@ const About = () => {
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '1.8rem' }}>
           
-          <div className="glass-card slide-up" style={{ padding: '2.2rem 1.8rem', borderTop: '4px solid var(--orange-signal)', background: 'linear-gradient(180deg, rgba(255, 122, 24, 0.08) 0%, rgba(11, 18, 38, 0.8) 100%)' }}>
+          <div className="glass-card slide-up" style={{ padding: '2.2rem 1.8rem', borderTop: '4px solid var(--orange-signal)', background: 'linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.42) 100%)' }}>
             <div className="glass-icon-box" style={{ width: '52px', height: '52px', borderRadius: '16px', margin: '0 auto 1.2rem', color: 'var(--orange-signal)', borderColor: 'var(--border-orange)' }}>
               <Award size={28} />
             </div>
