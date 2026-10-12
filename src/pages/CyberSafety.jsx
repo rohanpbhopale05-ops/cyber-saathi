@@ -9,70 +9,80 @@ const CyberSafety = () => {
   const tips = [
     { 
       title: "OTP Safety", 
-      icon: <ShieldAlert size={40} />, 
+      icon: <ShieldAlert size={28} />, 
+      color: "var(--orange-signal)",
       signs: "Caller or SMS asking for a 6-digit OTP code to resolve an issue.", 
       doNot: "Never share your OTP with anyone. Banks and official agencies will NEVER ask for it.", 
       whatToDo: "Disconnect the call immediately and inform your bank." 
     },
     { 
       title: "UPI Safety", 
-      icon: <FileText size={40} />, 
+      icon: <FileText size={28} />, 
+      color: "var(--cyan-highlight)",
       signs: "Caller says 'enter your UPI PIN to receive prize or refund money'.", 
       doNot: "UPI PIN is entered ONLY to SEND money, never to RECEIVE money.", 
       whatToDo: "Decline the request immediately in your UPI application." 
     },
     { 
       title: "KYC Scams", 
-      icon: <LinkIcon size={40} />, 
+      icon: <LinkIcon size={28} />, 
+      color: "#F59E0B",
       signs: "SMS warning: 'Your bank account/SIM card is suspended, update KYC immediately'.", 
       doNot: "Never click on KYC update links received through SMS or WhatsApp.", 
       whatToDo: "Visit your physical bank branch or service center in person to verify." 
     },
     { 
       title: "Fake Bank Calls", 
-      icon: <PhoneCall size={40} />, 
+      icon: <PhoneCall size={28} />, 
+      color: "var(--red-security)",
       signs: "Caller pretends to be a bank manager warning your ATM card is expiring.", 
       doNot: "Never disclose your card number, CVV (3 digits on the back), or expiry date.", 
       whatToDo: "Cut the call and dial the customer care number printed on your physical passbook." 
     },
     { 
       title: "Phishing Links", 
-      icon: <Mail size={40} />, 
+      icon: <Mail size={28} />, 
+      color: "var(--blue-electric)",
       signs: "Emails or texts with strange links offering government subsidies or rewards.", 
       doNot: "Do not tap on unknown links or enter your passwords on strange web pages.", 
       whatToDo: "Delete the message and mark the sender as spam." 
     },
     { 
       title: "WhatsApp Scams", 
-      icon: <Smartphone size={40} />, 
+      icon: <Smartphone size={28} />, 
+      color: "#10B981",
       signs: "Messages from unknown numbers claiming to be a relative in an emergency needing cash.", 
       doNot: "Do not transfer money in haste without direct voice verification.", 
       whatToDo: "Call that relative directly on their known phone number to verify first." 
     },
     { 
       title: "Fake Customer Care", 
-      icon: <PhoneCall size={40} />, 
+      icon: <PhoneCall size={28} />, 
+      color: "#EC4899",
       signs: "Customer care numbers searched on Google that ask you to download apps.", 
       doNot: "Never trust phone numbers found casually on search engine results.", 
       whatToDo: "Get verified numbers solely from the back of your credit/debit card or official app." 
     },
     { 
       title: "Lottery Scams", 
-      icon: <Gift size={40} />, 
+      icon: <Gift size={28} />, 
+      color: "#EAB308",
       signs: "Messages claiming you won ₹25 Lakhs or a car in a lucky draw you never entered.", 
       doNot: "Never pay any 'processing fee', 'GST', or 'clearance charges' to claim prizes.", 
       whatToDo: "Ignore and block the sender. Real lotteries do not ask for advance payment." 
     },
     { 
       title: "Remote Access Apps", 
-      icon: <AlertTriangle size={40} />, 
+      icon: <AlertTriangle size={28} />, 
+      color: "var(--red-security)",
       signs: "Caller asks you to install AnyDesk, TeamViewer, or QuickSupport on your device.", 
       doNot: "Never install remote screen-sharing applications on instruction from callers.", 
       whatToDo: "Hang up. If already installed, turn off Wi-Fi/mobile data and uninstall immediately." 
     },
     { 
       title: "QR Code Scams", 
-      icon: <QrCode size={40} />, 
+      icon: <QrCode size={28} />, 
+      color: "var(--cyan-highlight)",
       signs: "Buyer on OLX or marketplace sends a QR code saying 'Scan this to receive payment'.", 
       doNot: "Scanning a QR code and entering your PIN ALWAYS debits money from your account.", 
       whatToDo: "Refuse to scan QR codes for receiving payments. Receiving money never needs a PIN." 
