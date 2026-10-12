@@ -20,30 +20,28 @@ A simple, accessible cyber-safety and scam reporting web portal designed especia
 
 ## 🛡️ Key Features
 
-- **Senior-Citizen-Centric Accessibility:**
-  - High-contrast Red/Orange/White palette with clear readability
-  - Text size toggle: Normal, Large, and Extra Large font modes
-  - High-contrast display mode
-  - Large click areas, simple forms, and no confusing technical jargon
-  - 100% SVG icon-based visual layout (zero stock photos/images)
+- **🌐 Futuristic Cybersecurity Motion & Visual Design:**
+  - **Cinematic Animated Background Engine:** Canvas-powered circuit board traces with traveling photon pulses (warm red/orange on left, electric blue/cyan on right), slow camera parallax movement, floating glowing binary digits (`0`/`1`), breathing digital padlock aura, concentric ripples, and periodic light sweeps.
+  - **Ultra-Translucent Glassmorphism (~90% Transparency):** High-definition backdrop blur (`20px`), specular top-border refraction highlights, and uniform `.glass-icon-box` containers allowing the cybersecurity background to shine vividly through all cards, tables, and forms.
+  - **Intelligent Auto-Hide Header on Scroll:** Automatically slides out on downward scroll (`translateY(-125%)`) and slides in smoothly on upward scroll with zero layout shifts or click blocking.
 
-- **Scam Detection & Reporting:**
-  - **Check Scam:** Rule-based instant checker for suspicious phone numbers, links/URLs, and message texts with risk scores and warning signs.
-  - **Report Scam:** Guided step-by-step reporting form with scam type selection, incident details, and evidence attachment.
-  - **Emergency Help:** Direct one-tap buttons for National Cyber Crime Helpline (**1930**) and Police Emergency (**112**).
-  - **My Reports:** User dashboard to track status updates on submitted incident reports.
+- **👵 Senior-Citizen-Centric Accessibility:**
+  - **Root Text Size Scaling:** Dynamic font sizing (`Normal` → `Large 118%` → `Extra Large 138%`) with root synchronization that scales all `rem` units across every page, persistent across sessions via `localStorage`.
+  - **High-Contrast Display Mode:** Pure high-contrast black mode with high-legibility neon borders.
+  - **Read-Aloud Voice Assistant:** Web Speech API integration that speaks safety guidelines aloud.
+  - **Multilingual Support:** Instant toggling between English, मराठी (Marathi), and हिंदी (Hindi).
+  - Large click areas, simple step-by-step reporting, and zero confusing technical jargon.
 
-- **Multilingual Support:**
-  - Built-in centralized translation dictionary supporting:
-    - English
-    - मराठी (Marathi)
-    - हिंदी (Hindi)
+- **🔍 Scam Detection & Incident Reporting:**
+  - **Check Scam:** Real-time threat scanner with rule-based heuristics for phone numbers, suspicious links/URLs, and message texts with threat scores and actionable guidance.
+  - **Report a Scam:** Guided 4-step wizard with 8 categorized cyber scam tiles (UPI fraud, KYC trap, fake calls, etc.), incident timeline, evidence uploads, and encrypted Report ID generation.
+  - **Emergency Help:** Direct one-tap helplines for National Cyber Crime Helpline (**1930**) and National Police Emergency (**112**).
+  - **My Reports Dashboard:** Citizen portal to track investigation status (Submitted, Under Review, Investigating, Resolved).
+  - **Threat Intelligence Admin Console:** Admin dashboard with threat blocklists, report auditing, status updates, and metric cards.
 
-- **Backend & Security:**
-  - Powered by Supabase Auth and PostgreSQL
-  - Row Level Security (RLS) guaranteeing users only view their own reports
-  - Role-based Admin Dashboard for reviewing reports and maintaining threat indicators
-  - Graceful offline/demo mode support with `localStorage`
+- **🔒 Backend & Security Architecture:**
+  - Powered by Supabase (PostgreSQL, Supabase Auth, Row Level Security policies).
+  - Graceful fallback with offline `localStorage` demo mode when Supabase credentials are not configured.
 
 ---
 
