@@ -659,8 +659,24 @@ input:focus, select:focus, textarea:focus {
    7. SENIOR CITIZEN ACCESSIBILITY & HIGH CONTRAST
    ========================================================================== */
 
-.text-large { font-size: 120%; }
-.text-xlarge { font-size: 140%; }
+/* Scale root/html so all rem units across cards, headings, and buttons enlarge smoothly */
+html.text-large,
+:root.text-large {
+  font-size: 118%;
+}
+
+html.text-xlarge,
+:root.text-xlarge {
+  font-size: 138%;
+}
+
+.text-large { 
+  font-size: 118%; 
+}
+
+.text-xlarge { 
+  font-size: 138%; 
+}
 
 .high-contrast {
   --bg-deep: #000000;
