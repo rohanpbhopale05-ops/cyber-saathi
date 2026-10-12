@@ -28,30 +28,32 @@ const Home = () => {
         <div className="hero-cyber-backdrop" aria-hidden="true"></div>
 
         <div className="hero-content">
-          {/* Futuristic Concentric Digital Lock HUD Motif */}
+          {/* Futuristic Concentric Digital Lock HUD Visual Anchor */}
           <div className="cyber-hud-lock" aria-hidden="true">
+            <div className="cyber-hud-ripple"></div>
             <div className="cyber-hud-ring-outer"></div>
             <div className="cyber-hud-ring-inner"></div>
             <div className="cyber-hud-icon-core">
-              <Lock size={40} color="var(--cyan-highlight)" strokeWidth={2.2} />
+              <Lock size={44} color="var(--cyan-highlight)" strokeWidth={2.4} />
+              <div className="cyber-hud-core-sweep"></div>
             </div>
           </div>
 
           {/* Capsule Badge */}
-          <div style={{ marginBottom: '1.25rem' }}>
-            <span className="glass-capsule glass-capsule-cyan" style={{ fontSize: '1rem', padding: '0.45rem 1.3rem' }}>
+          <div style={{ marginBottom: '1.3rem' }}>
+            <span className="glass-capsule glass-capsule-cyan" style={{ fontSize: '1rem', padding: '0.45rem 1.4rem', letterSpacing: '0.04em' }}>
               <ShieldCheck size={18} color="var(--cyan-highlight)" />
-              <span>{t("Cyber Safety for Everyone")}</span>
+              <span>{t("CYBER SAFETY FOR EVERYONE")}</span>
             </span>
           </div>
 
           {/* Main Prominent Heading */}
           <h1 style={{ 
-            fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', 
+            fontSize: 'clamp(2.4rem, 5.2vw, 4rem)', 
             color: '#F8FAFC', 
             marginBottom: '1.25rem', 
             fontWeight: '900', 
-            letterSpacing: '-0.02em', 
+            letterSpacing: '-0.025em', 
             lineHeight: 1.15,
             maxWidth: '960px',
             margin: '0 auto 1.25rem'
@@ -59,30 +61,39 @@ const Home = () => {
             {t("Your Digital Safety, Our Priority")}
           </h1>
 
+          {/* Supporting Text */}
           <p style={{ 
-            fontSize: '1.45rem', 
+            fontSize: '1.35rem', 
             color: 'var(--text-secondary)', 
             maxWidth: '820px', 
-            margin: '0 auto 2.5rem', 
+            margin: '0 auto 2.6rem', 
             lineHeight: '1.6', 
             fontWeight: '500' 
           }}>
-            {t("A simple cyber-safety platform designed especially for senior citizens.")}
+            {t("Stay informed, recognize suspicious activities and find guidance to protect yourself from online scams.")}
           </p>
 
-          {/* Inline Quick Action Capsules */}
-          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-            <Link to="/report" className="glass-capsule glass-capsule-orange" style={{ textDecoration: 'none' }}>
-              <ShieldAlert size={18} color="var(--orange-signal)" />
-              <span>{t("Report Scam")}</span>
+          {/* Three Interactive Glass-Style Capsule Action Buttons */}
+          <div className="hero-action-buttons-group" style={{ display: 'flex', gap: '18px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+            <Link to="/report" className="glass-capsule glass-capsule-hero glass-capsule-orange" style={{ textDecoration: 'none' }}>
+              <span className="glass-icon-box" style={{ width: '38px', height: '38px', borderRadius: '999px', background: 'rgba(255, 122, 24, 0.2)', borderColor: 'var(--orange-signal)' }}>
+                <ShieldAlert size={20} color="var(--orange-signal)" />
+              </span>
+              <span style={{ fontSize: '1.18rem', fontWeight: '700' }}>{t("Report Scam")}</span>
             </Link>
-            <Link to="/check" className="glass-capsule glass-capsule-cyan" style={{ textDecoration: 'none' }}>
-              <Search size={18} color="var(--cyan-highlight)" />
-              <span>{t("Check Scam")}</span>
+
+            <Link to="/check" className="glass-capsule glass-capsule-hero glass-capsule-cyan" style={{ textDecoration: 'none' }}>
+              <span className="glass-icon-box" style={{ width: '38px', height: '38px', borderRadius: '999px', background: 'rgba(34, 211, 238, 0.2)', borderColor: 'var(--cyan-highlight)' }}>
+                <Search size={20} color="var(--cyan-highlight)" />
+              </span>
+              <span style={{ fontSize: '1.18rem', fontWeight: '700' }}>{t("Check Scam")}</span>
             </Link>
-            <Link to="/emergency" className="glass-capsule glass-capsule-red" style={{ textDecoration: 'none' }}>
-              <PhoneCall size={18} color="var(--red-security)" />
-              <span>{t("Emergency (1930)")}</span>
+
+            <Link to="/emergency" className="glass-capsule glass-capsule-hero glass-capsule-red" style={{ textDecoration: 'none' }}>
+              <span className="glass-icon-box" style={{ width: '38px', height: '38px', borderRadius: '999px', background: 'rgba(255, 59, 48, 0.25)', borderColor: 'var(--red-security)' }}>
+                <PhoneCall size={20} color="#FFFFFF" />
+              </span>
+              <span style={{ fontSize: '1.18rem', fontWeight: '700' }}>{t("Emergency Help")}</span>
             </Link>
           </div>
         </div>
