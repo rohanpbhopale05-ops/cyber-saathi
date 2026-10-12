@@ -18,7 +18,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
-const Navbar = ({ toggleHighContrast, cycleTextSize, textSize }) => {
+const Navbar = ({ toggleHighContrast, cycleTextSize, textSize, isHighContrast }) => {
   const { user, supabase } = useAuth();
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
