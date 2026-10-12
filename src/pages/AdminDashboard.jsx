@@ -371,7 +371,7 @@ const AdminDashboard = () => {
 
             <div className="input-group" style={{ marginBottom: '1.5rem' }}>
               <label style={{ color: 'var(--text-secondary)', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Update Status</label>
-              <select value={reportStatus} onChange={e => setReportStatus(e.target.value)} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.9)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}>
+              <select value={reportStatus} onChange={e => setReportStatus(e.target.value)} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.55)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}>
                 <option value="Submitted">Submitted</option>
                 <option value="Under Review">Under Review</option>
                 <option value="Investigating">Investigating</option>
@@ -388,7 +388,7 @@ const AdminDashboard = () => {
                 value={reportNote} 
                 onChange={e => setReportNote(e.target.value)}
                 placeholder="Enter internal notes for this case..."
-                style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.9)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.55)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}
               ></textarea>
             </div>
 
