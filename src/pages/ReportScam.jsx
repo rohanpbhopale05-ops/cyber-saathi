@@ -143,7 +143,7 @@ const ReportScam = () => {
         <div key={step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 1, width: '25%' }}>
           <div style={{ 
             width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            backgroundColor: step < currentStep ? 'var(--cyan-highlight)' : step === currentStep ? '#050816' : 'rgba(11, 18, 38, 0.9)',
+            backgroundColor: step < currentStep ? 'var(--cyan-highlight)' : step === currentStep ? '#050816' : 'rgba(11, 18, 38, 0.25)',
             border: `2.5px solid ${step <= currentStep ? 'var(--cyan-highlight)' : 'rgba(255, 255, 255, 0.2)'}`,
             boxShadow: step <= currentStep ? 'var(--glow-cyan)' : 'none',
             color: step < currentStep ? '#050816' : step === currentStep ? 'var(--cyan-highlight)' : 'var(--text-muted)',
@@ -207,8 +207,8 @@ const ReportScam = () => {
                       border: isSelected ? '2px solid var(--cyan-highlight)' : '1px solid rgba(255, 255, 255, 0.16)',
                       borderTop: isSelected ? '2px solid #FFFFFF' : '1.5px solid rgba(255, 255, 255, 0.3)',
                       background: isSelected 
-                        ? 'linear-gradient(135deg, rgba(34, 211, 238, 0.22) 0%, rgba(11, 18, 38, 0.55) 100%)' 
-                        : 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 18, 38, 0.35) 100%)',
+                        ? 'linear-gradient(135deg, rgba(34, 211, 238, 0.16) 0%, rgba(11, 18, 38, 0.12) 100%)' 
+                        : 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(11, 18, 38, 0.08) 100%)',
                       backdropFilter: 'blur(20px)',
                       WebkitBackdropFilter: 'blur(20px)',
                       borderRadius: '18px', 
