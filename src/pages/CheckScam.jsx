@@ -280,7 +280,7 @@ const CheckScam = () => {
             marginTop: '3.5rem', 
             borderTop: `6px solid ${getUIConfig(result.level).border}`,
             boxShadow: `0 20px 50px rgba(0,0,0,0.5), ${getUIConfig(result.level).glow}`,
-            background: `linear-gradient(180deg, ${getUIConfig(result.level).bg} 0%, rgba(11, 18, 38, 0.9) 100%)`
+            background: `linear-gradient(180deg, ${getUIConfig(result.level).bg} 0%, rgba(11, 18, 38, 0.10) 100%)`
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '22px', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
@@ -317,7 +317,7 @@ const CheckScam = () => {
           </div>
 
           <div style={{ 
-            background: 'rgba(15, 23, 42, 0.45)', 
+            background: 'rgba(15, 23, 42, 0.12)', 
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             padding: '2rem', 
