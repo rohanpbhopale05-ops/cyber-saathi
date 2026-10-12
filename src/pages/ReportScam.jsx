@@ -1,6 +1,23 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Upload, CheckCircle, ShieldAlert, Phone, MessageSquare, Mail, Link as LinkIcon, CreditCard, Share2, HelpCircle, FileText, X, Image as ImageIcon } from 'lucide-react';
+import { 
+  ArrowRight, 
+  ArrowLeft, 
+  Upload, 
+  CheckCircle, 
+  ShieldAlert, 
+  Phone, 
+  Smartphone, 
+  MessageSquare, 
+  Mail, 
+  Link as LinkIcon, 
+  CreditCard, 
+  Share2, 
+  HelpCircle, 
+  FileText, 
+  X, 
+  Image as ImageIcon 
+} from 'lucide-react';
 import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -12,6 +29,7 @@ const ReportScam = () => {
   const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [reportId, setReportId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [evidencePreview, setEvidencePreview] = useState(null);
   const [evidenceDetails, setEvidenceDetails] = useState(null);
@@ -106,9 +124,13 @@ const ReportScam = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     const newReportId = `CS-2026-${Math.floor(1000 + Math.random() * 9000)}`;
     
-    const finalDescription = formData.description + (formData.evidenceFileName ? `\n\n[Attached Evidence: ${formData.evidenceFileName}]` : '');
+    const reporterHeader = `[Reporter: ${formData.name || 'Anonymous'}${formData.mobile ? ` | Phone: ${formData.mobile}` : ''}${formData.email ? ` | Email: ${formData.email}` : ''}]`;
+    const finalDescription = `${reporterHeader}\n\n${formData.description || ''}${formData.evidenceFileName ? `\n\n[Attached Evidence: ${formData.evidenceFileName}]` : ''}`;
 
     const reportPayload = {
       report_id: newReportId,
@@ -123,13 +145,35 @@ const ReportScam = () => {
       status: 'Submitted'
     };
 
-    if (supabase) {
-      await supabase.from('reports').insert([reportPayload]);
-    } else {
+    // Attempt Supabase insert if client is configured
+    try {
+      if (supabase) {
+        const { error } = await supabase.from('reports').insert([reportPayload]);
+        if (error) {
+          console.warn("Supabase insert notice, backing up locally:", error.message || error);
+        }
+      }
+    } catch (err) {
+      console.warn("Supabase insert exception, proceeding with local backup:", err);
+    }
+
+    // Always persist to localStorage for instant tracking in My Reports
+    try {
       const existing = JSON.parse(localStorage.getItem('cyberSaathiReports') || '[]');
-      localStorage.setItem('cyberSaathiReports', JSON.stringify([{...reportPayload, id: existing.length + 1, created_at: new Date().toISOString(), evidence_name: formData.evidenceFileName || null}, ...existing]));
+      const newLocalEntry = {
+        ...reportPayload,
+        id: existing.length + 1,
+        created_at: new Date().toISOString(),
+        evidence_name: formData.evidenceFileName || null,
+        reporter_name: formData.name || null,
+        reporter_phone: formData.mobile || null
+      };
+      localStorage.setItem('cyberSaathiReports', JSON.stringify([newLocalEntry, ...existing]));
+    } catch (storageErr) {
+      console.error("Local storage error:", storageErr);
     }
     
+    setIsSubmitting(false);
     setReportId(newReportId);
     setCurrentStep(5);
   };
@@ -258,11 +302,16 @@ const ReportScam = () => {
               })}
             </div>
             
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-              <Button type="submit" variant="primary" style={{ padding: '1.1rem 3.5rem', fontSize: '1.3rem', borderRadius: '999px' }} disabled={!formData.scamType}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem', gap: '0.8rem' }}>
+              <Button type="submit" variant="primary" style={{ padding: '1.1rem 3.5rem', fontSize: '1.3rem', borderRadius: '999px', opacity: formData.scamType ? 1 : 0.6 }} disabled={!formData.scamType}>
                 <span>{t("Next")}</span>
                 <ArrowRight size={22} style={{ marginLeft: '10px' }} />
               </Button>
+              {!formData.scamType && (
+                <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)' }}>
+                  Please select one of the scam types above to continue
+                </p>
+              )}
             </div>
           </form>
         )}
@@ -436,11 +485,11 @@ const ReportScam = () => {
             </div>
             
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3rem' }}>
-              <Button type="button" onClick={handleBack} style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#F8FAFC', border: '1px solid var(--border-glass)', padding: '1rem 2.2rem', fontSize: '1.2rem', borderRadius: '999px' }}>
+              <Button type="button" onClick={handleBack} disabled={isSubmitting} style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: '#F8FAFC', border: '1px solid var(--border-glass)', padding: '1rem 2.2rem', fontSize: '1.2rem', borderRadius: '999px' }}>
                 <ArrowLeft size={22} style={{ marginRight: '8px' }} /> {t("Back")}
               </Button>
-              <Button type="submit" variant="danger" style={{ padding: '1.1rem 3.5rem', fontSize: '1.35rem', borderRadius: '999px' }}>
-                {t("SUBMIT REPORT")}
+              <Button type="submit" variant="danger" disabled={isSubmitting} style={{ padding: '1.1rem 3.5rem', fontSize: '1.35rem', borderRadius: '999px', opacity: isSubmitting ? 0.7 : 1 }}>
+                {isSubmitting ? "Submitting..." : t("SUBMIT REPORT")}
               </Button>
             </div>
           </form>

@@ -81,6 +81,7 @@ function MainLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/report" element={<ReportScam />} />
+          <Route path="/report-scam" element={<ReportScam />} />
           <Route path="/check" element={<CheckScam />} />
           <Route path="/safety" element={<CyberSafety />} />
           <Route path="/my-reports" element={<MyReports />} />

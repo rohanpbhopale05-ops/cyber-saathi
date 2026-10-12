@@ -203,14 +203,12 @@ const Navbar = ({ toggleHighContrast, cycleTextSize, textSize, isHighContrast })
           <span>{t("Emergency (1930)")}</span>
         </Link>
         
-        {user && (
-          <Link to="/my-reports" className={`nav-link-btn ${isActive('/my-reports') ? 'active' : ''}`}>
-            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '10px' }}>
-              <FileText size={18} />
-            </span>
-            <span>{t("My Reports")}</span>
-          </Link>
-        )}
+        <Link to="/my-reports" className={`nav-link-btn ${isActive('/my-reports') ? 'active' : ''}`}>
+          <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '10px' }}>
+            <FileText size={18} />
+          </span>
+          <span>{t("My Reports")}</span>
+        </Link>
         
         <Link to="/about" className={`nav-link-btn ${isActive('/about') ? 'active' : ''}`}>
           <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '10px' }}>

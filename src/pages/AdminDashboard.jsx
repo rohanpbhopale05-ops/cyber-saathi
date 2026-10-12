@@ -28,7 +28,8 @@ const AdminDashboard = () => {
       fetchData();
     } else if (!supabase) {
       // Demo mode
-      setReports(adminRecentReports);
+      const localReports = JSON.parse(localStorage.getItem('cyberSaathiReports') || '[]');
+      setReports([...localReports, ...adminRecentReports]);
     }
   }, [isAdmin]);
 
