@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -16,17 +16,52 @@ import AdminDashboard from './pages/AdminDashboard';
 import About from './pages/About';
 
 function MainLayout() {
-  const [isHighContrast, setIsHighContrast] = useState(false);
-  const [textSize, setTextSize] = useState('normal'); // normal, large, xlarge
+  const [isHighContrast, setIsHighContrast] = useState(() => {
+    return localStorage.getItem('cyber_saathi_high_contrast') === 'true';
+  });
+  const [textSize, setTextSize] = useState(() => {
+    return localStorage.getItem('cyber_saathi_text_size') || 'normal';
+  });
   const location = useLocation();
 
-  const toggleHighContrast = () => setIsHighContrast(!isHighContrast);
+  const toggleHighContrast = () => setIsHighContrast(prev => !prev);
   
   const cycleTextSize = () => {
-    if (textSize === 'normal') setTextSize('large');
-    else if (textSize === 'large') setTextSize('xlarge');
-    else setTextSize('normal');
+    setTextSize(prev => {
+      if (prev === 'normal') return 'large';
+      if (prev === 'large') return 'xlarge';
+      return 'normal';
+    });
   };
+
+  // Synchronize document.documentElement font scaling for full rem scaling across all components
+  useEffect(() => {
+    try {
+      localStorage.setItem('cyber_saathi_text_size', textSize);
+    } catch {
+      // ignore storage errors
+    }
+    document.documentElement.classList.remove('text-large', 'text-xlarge');
+    if (textSize === 'large') {
+      document.documentElement.classList.add('text-large');
+    } else if (textSize === 'xlarge') {
+      document.documentElement.classList.add('text-xlarge');
+    }
+  }, [textSize]);
+
+  // Synchronize high-contrast mode to document root
+  useEffect(() => {
+    try {
+      localStorage.setItem('cyber_saathi_high_contrast', isHighContrast ? 'true' : 'false');
+    } catch {
+      // ignore storage errors
+    }
+    if (isHighContrast) {
+      document.documentElement.classList.add('high-contrast');
+    } else {
+      document.documentElement.classList.remove('high-contrast');
+    }
+  }, [isHighContrast]);
 
   const textClass = textSize === 'large' ? 'text-large' : (textSize === 'xlarge' ? 'text-xlarge' : '');
   const isSubdued = location.pathname !== '/';
@@ -39,6 +74,7 @@ function MainLayout() {
         toggleHighContrast={toggleHighContrast} 
         cycleTextSize={cycleTextSize}
         textSize={textSize}
+        isHighContrast={isHighContrast}
       />
       
       <main style={{ flexGrow: 1, padding: '1rem', maxWidth: '1240px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
