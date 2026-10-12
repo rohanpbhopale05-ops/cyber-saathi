@@ -166,9 +166,19 @@ const CyberSafety = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2rem' }}>
         {tips.map((tip, index) => (
-          <div key={index} className="glass-card slide-up" style={{ animationDelay: `${index * 0.05}s`, borderTop: '4px solid var(--cyan-highlight)' }}>
+          <div key={index} className="glass-card slide-up" style={{ animationDelay: `${index * 0.05}s`, borderTop: `4px solid ${tip.color || 'var(--cyan-highlight)'}` }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '1.8rem' }}>
-              <div className="glass-icon-box" style={{ width: '56px', height: '56px', borderRadius: '16px', color: 'var(--cyan-highlight)', borderColor: 'var(--border-cyan)' }}>
+              <div 
+                className="glass-icon-box" 
+                style={{ 
+                  width: '56px', 
+                  height: '56px', 
+                  borderRadius: '16px', 
+                  color: tip.color || 'var(--cyan-highlight)', 
+                  borderColor: tip.color || 'var(--border-cyan)',
+                  boxShadow: `0 0 18px ${tip.color ? tip.color + '33' : 'rgba(0, 245, 255, 0.2)'}`
+                }}
+              >
                 {tip.icon}
               </div>
               <h2 style={{ fontSize: '1.65rem', color: '#F8FAFC', margin: 0, fontWeight: '800' }}>{t(tip.title)}</h2>
