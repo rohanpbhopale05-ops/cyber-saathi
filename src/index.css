@@ -2,11 +2,11 @@
   /* Futuristic Cybersecurity Palette */
   --bg-deep: #050816;
   --bg-navy: #0B1226;
-  --bg-card: rgba(11, 18, 38, 0.75);
-  --bg-card-hover: rgba(15, 23, 42, 0.85);
+  --bg-card: rgba(11, 18, 38, 0.42);
+  --bg-card-hover: rgba(15, 23, 42, 0.55);
   --bg-capsule: rgba(255, 255, 255, 0.08);
-  --bg-capsule-hover: rgba(255, 255, 255, 0.16);
-  --bg-alt: rgba(15, 23, 42, 0.7);
+  --bg-capsule-hover: rgba(255, 255, 255, 0.18);
+  --bg-alt: rgba(11, 18, 38, 0.42);
 
   /* Signature Cyber Accents */
   --blue-electric: #1677FF;
