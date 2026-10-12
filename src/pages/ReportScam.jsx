@@ -420,7 +420,7 @@ const ReportScam = () => {
               Your report has been encrypted and recorded. Authorities will review it shortly.
             </p>
             
-            <div style={{ background: 'rgba(11, 18, 38, 0.9)', padding: '2.2rem 3rem', borderRadius: '22px', border: '1.5px solid var(--cyan-highlight)', display: 'inline-block', marginBottom: '3rem', boxShadow: 'var(--glow-cyan)' }}>
+            <div style={{ background: 'rgba(11, 18, 38, 0.5)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', padding: '2.2rem 3rem', borderRadius: '22px', border: '1.5px solid var(--cyan-highlight)', display: 'inline-block', marginBottom: '3rem', boxShadow: 'var(--glow-cyan)' }}>
               <p style={{ fontSize: '1.2rem', margin: '0 0 0.8rem 0', color: 'var(--text-secondary)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 {t("Your Report ID")}
               </p>
