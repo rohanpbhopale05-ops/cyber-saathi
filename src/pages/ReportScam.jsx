@@ -163,18 +163,18 @@ const ReportScam = () => {
   );
 
   const scamTypesList = [
-    { id: 'Phone Call', icon: <Phone size={32}/> },
-    { id: 'SMS', icon: <MessageSquare size={32}/> },
-    { id: 'WhatsApp', icon: <MessageSquare size={32}/> },
-    { id: 'Email', icon: <Mail size={32}/> },
-    { id: 'URL', icon: <LinkIcon size={32}/> },
-    { id: 'UPI/Payment', icon: <CreditCard size={32}/> },
-    { id: 'Social Media', icon: <Share2 size={32}/> },
-    { id: 'Other', icon: <HelpCircle size={32}/> }
+    { id: 'Phone Call', icon: <Phone size={26}/>, color: 'var(--orange-signal)', desc: 'Spoofing, threats & voice calls' },
+    { id: 'SMS', icon: <MessageSquare size={26}/>, color: 'var(--cyan-highlight)', desc: 'Fake lottery & urgent OTP alerts' },
+    { id: 'WhatsApp', icon: <Smartphone size={26}/>, color: '#10B981', desc: 'Job offers, fake profiles & media' },
+    { id: 'Email', icon: <Mail size={26}/>, color: 'var(--blue-electric)', desc: 'Phishing links & bank imposters' },
+    { id: 'URL', icon: <LinkIcon size={26}/>, color: '#A855F7', desc: 'Cloned portals & malware links' },
+    { id: 'UPI/Payment', icon: <CreditCard size={26}/>, color: 'var(--red-security)', desc: 'Unauthorized debits & QR traps' },
+    { id: 'Social Media', icon: <Share2 size={26}/>, color: '#EC4899', desc: 'Cloned accounts & fake ads' },
+    { id: 'Other', icon: <HelpCircle size={26}/>, color: '#94A3B8', desc: 'Any other suspicious cyber fraud' }
   ];
 
   return (
-    <div className="fade-in" style={{ maxWidth: '960px', margin: '0 auto', padding: '1rem 0 3.5rem' }}>
+    <div className="fade-in" style={{ maxWidth: '980px', margin: '0 auto', padding: '1rem 0 3.5rem' }}>
       
       {currentStep < 5 && (
         <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
@@ -195,29 +195,67 @@ const ReportScam = () => {
               {t("1. What type of scam did you encounter?")}
             </h2>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-              {scamTypesList.map(type => (
-                <div 
-                  key={type.id}
-                  onClick={() => setFormData({...formData, scamType: type.id})}
-                  style={{
-                    border: formData.scamType === type.id ? '2px solid var(--cyan-highlight)' : '1px solid var(--border-glass)',
-                    background: formData.scamType === type.id ? 'rgba(34, 211, 238, 0.15)' : 'rgba(255, 255, 255, 0.05)',
-                    borderRadius: '16px', 
-                    padding: '1.6rem 1.2rem', 
-                    textAlign: 'center', 
-                    cursor: 'pointer', 
-                    transition: 'all 0.25s ease',
-                    boxShadow: formData.scamType === type.id ? 'var(--glow-cyan)' : 'none',
-                    transform: formData.scamType === type.id ? 'translateY(-2px)' : 'none'
-                  }}
-                >
-                  <div style={{ color: formData.scamType === type.id ? 'var(--cyan-highlight)' : 'var(--text-secondary)', marginBottom: '0.8rem' }}>
-                    {type.icon}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem' }}>
+              {scamTypesList.map(type => {
+                const isSelected = formData.scamType === type.id;
+                return (
+                  <div 
+                    key={type.id}
+                    onClick={() => setFormData({...formData, scamType: type.id})}
+                    style={{
+                      position: 'relative',
+                      border: isSelected ? '2px solid var(--cyan-highlight)' : '1px solid rgba(255, 255, 255, 0.16)',
+                      borderTop: isSelected ? '2px solid #FFFFFF' : '1.5px solid rgba(255, 255, 255, 0.3)',
+                      background: isSelected 
+                        ? 'linear-gradient(135deg, rgba(34, 211, 238, 0.22) 0%, rgba(11, 18, 38, 0.55) 100%)' 
+                        : 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 18, 38, 0.35) 100%)',
+                      backdropFilter: 'blur(20px)',
+                      WebkitBackdropFilter: 'blur(20px)',
+                      borderRadius: '18px', 
+                      padding: '1.6rem 1.2rem', 
+                      textAlign: 'center', 
+                      cursor: 'pointer', 
+                      transition: 'all 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: isSelected 
+                        ? '0 12px 35px rgba(0, 0, 0, 0.4), var(--glow-cyan), inset 0 1px 2px rgba(255, 255, 255, 0.4)' 
+                        : '0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2)',
+                      transform: isSelected ? 'translateY(-3px)' : 'none'
+                    }}
+                  >
+                    {/* Selected Indicator Badge */}
+                    {isSelected && (
+                      <div style={{ position: 'absolute', top: '12px', right: '12px', width: '22px', height: '22px', borderRadius: '50%', background: 'var(--cyan-highlight)', color: '#050816', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 10px var(--cyan-highlight)' }}>
+                        <CheckCircle size={15} strokeWidth={3} />
+                      </div>
+                    )}
+
+                    {/* Symmetrical Glass Icon Box */}
+                    <div 
+                      className="glass-icon-box" 
+                      style={{ 
+                        width: '54px', 
+                        height: '54px', 
+                        borderRadius: '16px', 
+                        margin: '0 auto 1rem', 
+                        background: isSelected ? 'rgba(34, 211, 238, 0.25)' : 'rgba(255, 255, 255, 0.08)',
+                        borderColor: isSelected ? 'var(--cyan-highlight)' : 'rgba(255, 255, 255, 0.2)',
+                        color: type.color,
+                        boxShadow: isSelected ? `0 0 20px ${type.color}` : 'none',
+                        transition: 'all 0.25s ease'
+                      }}
+                    >
+                      {type.icon}
+                    </div>
+
+                    <h3 style={{ margin: '0 0 0.35rem 0', fontSize: '1.25rem', color: '#F8FAFC', fontWeight: '800', letterSpacing: '-0.01em' }}>
+                      {type.id}
+                    </h3>
+                    <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                      {type.desc}
+                    </p>
                   </div>
-                  <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#F8FAFC', fontWeight: '700' }}>{type.id}</h3>
-                </div>
-              ))}
+                );
+              })}
             </div>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
