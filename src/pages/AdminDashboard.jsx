@@ -306,7 +306,7 @@ const AdminDashboard = () => {
                 placeholder={`Enter suspicious ${activeTab === 'numbers' ? 'phone number' : 'URL'}`}
                 value={newItemValue}
                 onChange={(e) => setNewItemValue(e.target.value)}
-                style={{ flex: 1, padding: '1rem', fontSize: '1.1rem', background: 'rgba(11, 18, 38, 0.8)', border: '1px solid var(--border-glass)', borderRadius: '12px', color: 'var(--text-primary)' }}
+                style={{ flex: 1, padding: '1rem', fontSize: '1.1rem', background: 'rgba(11, 18, 38, 0.15)', border: '1px solid var(--border-glass)', borderRadius: '12px', color: 'var(--text-primary)' }}
               />
               <Button onClick={() => handleAddEntity(activeTab === 'numbers' ? 'suspicious_numbers' : 'suspicious_urls')} variant="primary" style={{ padding: '0 2rem', borderRadius: '999px' }}>
                 <Plus size={20} style={{ marginRight: '5px' }} /> Add
@@ -345,7 +345,7 @@ const AdminDashboard = () => {
 
       {/* Report Modal */}
       {selectedReport && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(5, 8, 22, 0.85)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(5, 8, 22, 0.60)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }}>
           <div className="glass-card slide-up" style={{ width: '100%', maxWidth: '700px', maxHeight: '90vh', overflowY: 'auto', position: 'relative', border: '1px solid rgba(34, 211, 238, 0.3)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(34, 211, 238, 0.15)' }}>
             <button onClick={() => setSelectedReport(null)} style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', background: 'rgba(255, 255, 255, 0.08)', border: '1px solid var(--border-glass)', borderRadius: '50%', width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', cursor: 'pointer' }}>
               <X size={20} />
@@ -371,7 +371,7 @@ const AdminDashboard = () => {
 
             <div className="input-group" style={{ marginBottom: '1.5rem' }}>
               <label style={{ color: 'var(--text-secondary)', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Update Status</label>
-              <select value={reportStatus} onChange={e => setReportStatus(e.target.value)} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.55)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}>
+              <select value={reportStatus} onChange={e => setReportStatus(e.target.value)} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.18)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}>
                 <option value="Submitted">Submitted</option>
                 <option value="Under Review">Under Review</option>
                 <option value="Investigating">Investigating</option>
@@ -388,7 +388,7 @@ const AdminDashboard = () => {
                 value={reportNote} 
                 onChange={e => setReportNote(e.target.value)}
                 placeholder="Enter internal notes for this case..."
-                style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.55)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', background: 'rgba(11, 18, 38, 0.18)', backdropFilter: 'blur(12px)', border: '1px solid var(--border-glass)', color: '#F8FAFC', fontSize: '1rem' }}
               ></textarea>
             </div>
 
