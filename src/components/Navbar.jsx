@@ -1,5 +1,19 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Shield, Eye, Type, Globe, LogOut } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { 
+  Shield, 
+  Eye, 
+  Type, 
+  Globe, 
+  LogOut, 
+  Home, 
+  ShieldAlert, 
+  Search, 
+  BookOpen, 
+  PhoneCall, 
+  FileText, 
+  Info, 
+  LogIn 
+} from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -7,6 +21,7 @@ const Navbar = ({ toggleHighContrast, cycleTextSize, textSize }) => {
   const { user, supabase } = useAuth();
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     if (supabase) {
@@ -15,31 +30,7 @@ const Navbar = ({ toggleHighContrast, cycleTextSize, textSize }) => {
     navigate('/');
   };
 
-  const navLinkStyle = {
-    color: 'var(--primary)',
-    textDecoration: 'none',
-    fontSize: '1.2rem',
-    fontWeight: '600',
-    padding: '0.6rem 1rem',
-    borderRadius: '8px',
-    transition: 'background-color 0.2s',
-    display: 'flex',
-    alignItems: 'center'
-  };
-
-  const actionBtnStyle = {
-    background: 'rgba(185, 28, 28, 0.05)',
-    border: '2px solid rgba(185, 28, 28, 0.2)',
-    color: 'var(--primary)',
-    padding: '0.6rem 1.2rem',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    fontWeight: 'bold',
-    fontSize: '1.1rem'
-  };
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="glass-card" style={{ margin: '1rem', padding: '1.5rem', borderRadius: '16px', position: 'sticky', top: '10px', zIndex: 100 }}>
@@ -52,19 +43,27 @@ const Navbar = ({ toggleHighContrast, cycleTextSize, textSize }) => {
           </div>
         </Link>
         
-        <div style={{ display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap', marginTop: '10px' }}>
-          <button onClick={toggleHighContrast} style={actionBtnStyle} aria-label="Toggle High Contrast">
-            <Eye size={24} /> Contrast
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap', marginTop: '10px' }}>
+          <button onClick={toggleHighContrast} className="nav-action-btn" aria-label="Toggle High Contrast">
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '8px' }}>
+              <Eye size={18} />
+            </span>
+            <span>Contrast</span>
           </button>
-          <button onClick={cycleTextSize} style={actionBtnStyle} aria-label="Toggle Text Size">
-            <Type size={24} /> Size: {textSize === 'normal' ? 'Normal' : textSize === 'large' ? 'Large' : 'Extra Large'}
+          <button onClick={cycleTextSize} className="nav-action-btn" aria-label="Toggle Text Size">
+            <span className="glass-icon-box" style={{ width: '32px', height: '32px', borderRadius: '8px' }}>
+              <Type size={18} />
+            </span>
+            <span>Size: {textSize === 'normal' ? 'Normal' : textSize === 'large' ? 'Large' : 'Extra Large'}</span>
           </button>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <Globe size={24} color="var(--primary)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span className="glass-icon-box" style={{ width: '36px', height: '36px', borderRadius: '10px' }}>
+              <Globe size={18} />
+            </span>
             <select 
               value={language} 
               onChange={(e) => setLanguage(e.target.value)}
-              style={{ background: 'white', color: 'var(--primary)', padding: '0.5rem', borderRadius: '8px', fontSize: '1.1rem', border: '2px solid rgba(185,28,28,0.2)', fontWeight: 'bold' }}
+              style={{ background: 'white', color: 'var(--primary)', padding: '0.45rem 0.8rem', borderRadius: '10px', fontSize: '1.05rem', border: '1.5px solid rgba(185,28,28,0.2)', fontWeight: 'bold' }}
             >
               <option value="English">English</option>
               <option value="Marathi">मराठी</option>
@@ -75,26 +74,73 @@ const Navbar = ({ toggleHighContrast, cycleTextSize, textSize }) => {
       </div>
       
       {/* Navigation */}
-      <nav style={{ maxWidth: '1200px', margin: '20px auto 0', display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center', borderTop: '2px solid rgba(185, 28, 28, 0.1)', paddingTop: '15px' }}>
-        <Link to="/" style={navLinkStyle}>{t("Home")}</Link>
-        <Link to="/report" style={navLinkStyle}>{t("Report Scam")}</Link>
-        <Link to="/check" style={navLinkStyle}>{t("Check Scam")}</Link>
-        <Link to="/safety" style={navLinkStyle}>{t("Cyber Safety Tips")}</Link>
-        <Link to="/emergency" style={{...navLinkStyle, color: 'var(--danger)', fontWeight: 'bold', backgroundColor: '#fef2f2'}}>{t("Emergency (1930)")}</Link>
+      <nav style={{ maxWidth: '1200px', margin: '20px auto 0', display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', borderTop: '2px solid rgba(185, 28, 28, 0.1)', paddingTop: '15px' }}>
+        <Link to="/" className={`nav-link-btn ${isActive('/') ? 'active' : ''}`}>
+          <span className="glass-icon-box">
+            <Home size={19} />
+          </span>
+          <span>{t("Home")}</span>
+        </Link>
+
+        <Link to="/report" className={`nav-link-btn ${isActive('/report') ? 'active' : ''}`}>
+          <span className="glass-icon-box">
+            <ShieldAlert size={19} />
+          </span>
+          <span>{t("Report Scam")}</span>
+        </Link>
+
+        <Link to="/check" className={`nav-link-btn ${isActive('/check') ? 'active' : ''}`}>
+          <span className="glass-icon-box">
+            <Search size={19} />
+          </span>
+          <span>{t("Check Scam")}</span>
+        </Link>
+
+        <Link to="/safety" className={`nav-link-btn ${isActive('/safety') ? 'active' : ''}`}>
+          <span className="glass-icon-box">
+            <BookOpen size={19} />
+          </span>
+          <span>{t("Cyber Safety Tips")}</span>
+        </Link>
+
+        <Link to="/emergency" className={`nav-link-btn emergency ${isActive('/emergency') ? 'active' : ''}`}>
+          <span className="glass-icon-box">
+            <PhoneCall size={19} />
+          </span>
+          <span>{t("Emergency (1930)")}</span>
+        </Link>
         
-        {user && <Link to="/my-reports" style={navLinkStyle}>{t("My Reports")}</Link>}
+        {user && (
+          <Link to="/my-reports" className={`nav-link-btn ${isActive('/my-reports') ? 'active' : ''}`}>
+            <span className="glass-icon-box">
+              <FileText size={19} />
+            </span>
+            <span>{t("My Reports")}</span>
+          </Link>
+        )}
         
-        <Link to="/about" style={navLinkStyle}>{t("About Project")}</Link>
+        <Link to="/about" className={`nav-link-btn ${isActive('/about') ? 'active' : ''}`}>
+          <span className="glass-icon-box">
+            <Info size={19} />
+          </span>
+          <span>{t("About Project")}</span>
+        </Link>
         
         <div style={{ flexGrow: 1 }}></div>
         
         {user ? (
-          <button onClick={handleLogout} style={{ ...actionBtnStyle, background: 'var(--primary)', color: 'white' }}>
-            <LogOut size={20} /> {t("Logout")}
+          <button onClick={handleLogout} className="nav-link-btn nav-btn-solid">
+            <span className="glass-icon-box">
+              <LogOut size={19} />
+            </span>
+            <span>{t("Logout")}</span>
           </button>
         ) : (
-          <Link to="/login" style={{ ...actionBtnStyle, textDecoration: 'none', backgroundColor: 'var(--primary)', color: 'white' }}>
-            {t("Login / Signup")}
+          <Link to="/login" className={`nav-link-btn nav-btn-solid ${isActive('/login') ? 'active' : ''}`}>
+            <span className="glass-icon-box">
+              <LogIn size={19} />
+            </span>
+            <span>{t("Login / Signup")}</span>
           </Link>
         )}
       </nav>

@@ -62,6 +62,145 @@ body::after {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Rectangular Shape Glass Effect with Rounded Corners for Icons & Options */
+.glass-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(185, 28, 28, 0.18);
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link-btn {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 12px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+  background: rgba(185, 28, 28, 0.05);
+  border-color: rgba(185, 28, 28, 0.14);
+  transform: translateY(-1px);
+}
+
+.nav-link-btn:hover .glass-icon-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(185, 28, 28, 0.35);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.18), inset 0 1px 1px #ffffff;
+  transform: scale(1.08);
+}
+
+.nav-link-btn.active {
+  background: rgba(185, 28, 28, 0.08);
+  border-color: rgba(185, 28, 28, 0.22);
+}
+
+.nav-link-btn.active .glass-icon-box {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.28);
+}
+
+/* Emergency nav option */
+.nav-link-btn.emergency {
+  color: var(--danger);
+  font-weight: 700;
+  background: #fef2f2;
+  border-color: rgba(220, 38, 38, 0.25);
+}
+
+.nav-link-btn.emergency .glass-icon-box {
+  background: rgba(220, 38, 38, 0.12);
+  border-color: rgba(220, 38, 38, 0.35);
+  color: var(--danger);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+}
+
+.nav-link-btn.emergency:hover {
+  background: #fee2e2;
+  border-color: rgba(220, 38, 38, 0.35);
+}
+
+.nav-link-btn.emergency:hover .glass-icon-box {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+/* Solid action button (Login/Signup / Logout) */
+.nav-link-btn.nav-btn-solid {
+  background: var(--primary);
+  color: #ffffff;
+  border: 1.5px solid var(--primary);
+  box-shadow: 0 3px 12px rgba(185, 28, 28, 0.22);
+}
+
+.nav-link-btn.nav-btn-solid .glass-icon-box {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.nav-link-btn.nav-btn-solid:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+  box-shadow: 0 5px 16px rgba(185, 28, 28, 0.32);
+}
+
+.nav-link-btn.nav-btn-solid:hover .glass-icon-box {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Header utility buttons (Contrast, Size) */
+.nav-action-btn {
+  background: rgba(185, 28, 28, 0.05);
+  border: 1.5px solid rgba(185, 28, 28, 0.2);
+  color: var(--primary);
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.25s ease;
+}
+
+.nav-action-btn:hover {
+  background: rgba(185, 28, 28, 0.1);
+  border-color: rgba(185, 28, 28, 0.35);
+  transform: translateY(-1px);
+}
+
+.nav-action-btn:hover .glass-icon-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(185, 28, 28, 0.35);
+  transform: scale(1.08);
+}
+
 /* Backward compatibility for old cards */
 .card {
   background: rgba(255, 255, 255, 0.7);
@@ -89,6 +228,50 @@ body::after {
   border: 2px solid #000;
   background: #fff;
   box-shadow: none;
+}
+
+.high-contrast .glass-icon-box {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+  box-shadow: none;
+}
+.high-contrast .nav-link-btn {
+  color: #000000;
+}
+.high-contrast .nav-link-btn.active {
+  background: #000000;
+  color: #ffffff;
+}
+.high-contrast .nav-link-btn.active .glass-icon-box {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+.high-contrast .nav-link-btn.emergency {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+}
+.high-contrast .nav-link-btn.emergency .glass-icon-box {
+  background: #ffffff;
+  border-color: #000000;
+  color: #000000;
+}
+.high-contrast .nav-link-btn.nav-btn-solid {
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+.high-contrast .nav-link-btn.nav-btn-solid .glass-icon-box {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+.high-contrast .nav-action-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
 }
 
 .text-large { font-size: 115%; }
