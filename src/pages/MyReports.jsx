@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FileSearch, Clock, CheckCircle, AlertTriangle, ShieldCheck } from 'lucide-react';
 import Button from '../components/Button';
 import { useLanguage } from '../context/LanguageContext';
 
 const MyReports = () => {
+  const navigate = useNavigate();
   const { user, supabase } = useAuth();
   const { t } = useLanguage();
   const [reports, setReports] = useState([]);
@@ -74,7 +76,7 @@ const MyReports = () => {
           <ShieldCheck size={80} color="var(--primary-light)" style={{ margin: '0 auto 1.5rem', opacity: 0.5 }} />
           <h2 style={{ fontSize: '2rem', color: 'var(--text-light)', marginBottom: '1rem' }}>No reports found</h2>
           <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>You haven't submitted any reports yet.</p>
-          <Button onClick={() => window.location.href = '/report'} variant="primary" style={{ padding: '1rem 2rem', fontSize: '1.2rem' }}>
+          <Button onClick={() => navigate('/report')} variant="primary" style={{ padding: '1rem 2rem', fontSize: '1.2rem' }}>
             Report a Scam Now
           </Button>
         </div>

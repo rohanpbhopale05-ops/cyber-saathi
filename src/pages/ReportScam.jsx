@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Upload, CheckCircle, ShieldAlert, Phone, MessageSquare, Mail, Link as LinkIcon, CreditCard, Share2, HelpCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const ReportScam = () => {
+  const navigate = useNavigate();
   const { user, supabase } = useAuth();
   const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
@@ -263,7 +265,7 @@ const ReportScam = () => {
               Please save this ID to track your complaint status.
             </p>
 
-            <Button onClick={() => window.location.href = '/my-reports'} variant="primary" style={{ padding: '1.5rem 4rem', fontSize: '1.5rem' }}>
+            <Button onClick={() => navigate('/my-reports')} variant="primary" style={{ padding: '1.5rem 4rem', fontSize: '1.5rem' }}>
               TRACK MY REPORT
             </Button>
           </div>
