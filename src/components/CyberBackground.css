@@ -23,7 +23,7 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  filter: contrast(1.15) brightness(1.02) saturate(1.1);
+  filter: contrast(1.18) brightness(1.08) saturate(1.22);
   will-change: transform;
   animation: cinematicCameraMove 24s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
   transform-origin: center center;
@@ -58,8 +58,8 @@
   height: 65vw;
   background: radial-gradient(
     circle, 
-    rgba(255, 59, 48, 0.38) 0%, 
-    rgba(255, 122, 24, 0.24) 40%, 
+    rgba(255, 59, 48, 0.46) 0%, 
+    rgba(255, 122, 24, 0.3) 40%, 
     transparent 70%
   );
   animation: ambientFlowLeft 14s ease-in-out infinite alternate;
@@ -68,15 +68,15 @@
 @keyframes ambientFlowLeft {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.75;
+    opacity: 0.82;
   }
   50% {
-    transform: translate3d(5vw, 4vh, 0) scale(1.12);
-    opacity: 0.95;
+    transform: translate3d(5vw, 4vh, 0) scale(1.14);
+    opacity: 1;
   }
   100% {
-    transform: translate3d(-2vw, 8vh, 0) scale(1.04);
-    opacity: 0.8;
+    transform: translate3d(-2vw, 8vh, 0) scale(1.06);
+    opacity: 0.85;
   }
 }
 
@@ -88,8 +88,8 @@
   height: 65vw;
   background: radial-gradient(
     circle, 
-    rgba(22, 119, 255, 0.36) 0%, 
-    rgba(34, 211, 238, 0.22) 40%, 
+    rgba(22, 119, 255, 0.44) 0%, 
+    rgba(34, 211, 238, 0.28) 40%, 
     transparent 70%
   );
   animation: ambientFlowRight 16s ease-in-out infinite alternate;
