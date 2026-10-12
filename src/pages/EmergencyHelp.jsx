@@ -29,7 +29,7 @@ const EmergencyHelp = () => {
           <div 
             className="glass-card slide-up" 
             style={{ 
-              background: 'linear-gradient(135deg, rgba(255, 59, 48, 0.22) 0%, rgba(11, 18, 38, 0.45) 100%)', 
+              background: 'linear-gradient(135deg, rgba(255, 59, 48, 0.14) 0%, rgba(11, 18, 38, 0.10) 100%)', 
               color: '#F8FAFC', 
               padding: '3rem 2.5rem', 
               display: 'flex', 
@@ -63,7 +63,7 @@ const EmergencyHelp = () => {
           <div 
             className="glass-card slide-up" 
             style={{ 
-              background: 'linear-gradient(135deg, rgba(255, 122, 24, 0.18) 0%, rgba(11, 18, 38, 0.45) 100%)', 
+              background: 'linear-gradient(135deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.10) 100%)', 
               color: '#F8FAFC', 
               padding: '3rem 2.5rem', 
               display: 'flex', 
