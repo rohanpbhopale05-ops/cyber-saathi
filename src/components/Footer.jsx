@@ -7,13 +7,16 @@ const Footer = () => {
 
   return (
     <footer style={{ 
-      background: 'rgba(5, 8, 22, 0.96)', 
+      background: 'rgba(5, 8, 22, 0.45)', 
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
       color: '#F8FAFC', 
       padding: '4rem 1.5rem 2rem', 
       marginTop: 'auto', 
-      borderTop: '1px solid rgba(34, 211, 238, 0.25)',
-      boxShadow: '0 -15px 40px rgba(0, 0, 0, 0.6)',
-      position: 'relative'
+      borderTop: '1px solid rgba(34, 211, 238, 0.3)',
+      boxShadow: '0 -15px 40px rgba(0, 0, 0, 0.4)',
+      position: 'relative',
+      zIndex: 10
     }}>
       <div style={{ maxWidth: '1240px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem' }}>
         
