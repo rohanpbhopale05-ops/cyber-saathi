@@ -299,7 +299,9 @@ const CheckScam = () => {
           </div>
 
           <div style={{ 
-            background: 'rgba(15, 23, 42, 0.85)', 
+            background: 'rgba(15, 23, 42, 0.45)', 
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
             padding: '2rem', 
             borderRadius: '18px', 
             border: `1.5px solid ${getUIConfig(result.level).color}`,
