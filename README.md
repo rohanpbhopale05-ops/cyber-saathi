@@ -82,6 +82,13 @@ A simple, accessible cyber-safety and scam reporting web portal designed especia
    ```
    Open `http://localhost:5173` in your browser.
 
+6. **Automatic GitHub Push (Optional):**
+   To automatically commit and push any changes you make to GitHub on save:
+   ```bash
+   npm run auto-push
+   ```
+   *(Or simply double-click `auto-push.bat` on Windows)*
+
 ---
 
 ## 🛠️ Technology Stack
