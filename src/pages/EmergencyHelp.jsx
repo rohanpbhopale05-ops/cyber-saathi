@@ -29,7 +29,7 @@ const EmergencyHelp = () => {
           <div 
             className="glass-card slide-up" 
             style={{ 
-              background: 'linear-gradient(135deg, rgba(255, 59, 48, 0.25) 0%, rgba(11, 18, 38, 0.95) 100%)', 
+              background: 'linear-gradient(135deg, rgba(255, 59, 48, 0.22) 0%, rgba(11, 18, 38, 0.45) 100%)', 
               color: '#F8FAFC', 
               padding: '3rem 2.5rem', 
               display: 'flex', 
@@ -43,7 +43,7 @@ const EmergencyHelp = () => {
               transition: 'all 0.3s ease'
             }}
           >
-            <div className="glass-icon-box" style={{ width: '80px', height: '80px', borderRadius: '22px', background: 'rgba(255, 59, 48, 0.3)', borderColor: 'var(--red-security)', color: '#FFFFFF', boxShadow: 'var(--glow-red)' }}>
+            <div className="glass-icon-box" style={{ width: '80px', height: '80px', borderRadius: '22px', background: 'rgba(255, 59, 48, 0.25)', borderColor: 'var(--red-security)', color: '#FFFFFF', boxShadow: 'var(--glow-red)' }}>
               <PhoneCall size={42} strokeWidth={2.3} />
             </div>
             <div style={{ textAlign: 'left' }}>
@@ -63,7 +63,7 @@ const EmergencyHelp = () => {
           <div 
             className="glass-card slide-up" 
             style={{ 
-              background: 'linear-gradient(135deg, rgba(255, 122, 24, 0.2) 0%, rgba(11, 18, 38, 0.95) 100%)', 
+              background: 'linear-gradient(135deg, rgba(255, 122, 24, 0.18) 0%, rgba(11, 18, 38, 0.45) 100%)', 
               color: '#F8FAFC', 
               padding: '3rem 2.5rem', 
               display: 'flex', 
@@ -78,7 +78,7 @@ const EmergencyHelp = () => {
               transition: 'all 0.3s ease'
             }}
           >
-            <div className="glass-icon-box" style={{ width: '80px', height: '80px', borderRadius: '22px', background: 'rgba(255, 122, 24, 0.25)', borderColor: 'var(--orange-signal)', color: 'var(--orange-signal)', boxShadow: 'var(--glow-orange)' }}>
+            <div className="glass-icon-box" style={{ width: '80px', height: '80px', borderRadius: '22px', background: 'rgba(255, 122, 24, 0.2)', borderColor: 'var(--orange-signal)', color: 'var(--orange-signal)', boxShadow: 'var(--glow-orange)' }}>
               <ShieldAlert size={42} strokeWidth={2.3} />
             </div>
             <div style={{ textAlign: 'left' }}>
