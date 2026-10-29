@@ -127,7 +127,7 @@ const ReportScam = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
 
-    const newReportId = `CS-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const newReportId = `CS-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
     
     const reporterHeader = `[Reporter: ${formData.name || 'Anonymous'}${formData.mobile ? ` | Phone: ${formData.mobile}` : ''}${formData.email ? ` | Email: ${formData.email}` : ''}]`;
     const finalDescription = `${reporterHeader}\n\n${formData.description || ''}${formData.evidenceFileName ? `\n\n[Attached Evidence: ${formData.evidenceFileName}]` : ''}`;
@@ -146,15 +146,17 @@ const ReportScam = () => {
     };
 
     // Attempt Supabase insert if client is configured
-    try {
-      if (supabase) {
+    if (supabase) {
+      try {
         const { error } = await supabase.from('reports').insert([reportPayload]);
         if (error) {
-          console.warn("Supabase insert notice, backing up locally:", error.message || error);
+          alert('Notice: Could not sync to cloud database (' + (error.message || 'Error') + '). Saving report locally so your report is not lost.');
+          console.error("Supabase insert error:", error);
         }
+      } catch (err) {
+        alert('Network Notice: Could not reach cloud server. Saving report to your local device.');
+        console.error("Supabase network exception:", err);
       }
-    } catch (err) {
-      console.warn("Supabase insert exception, proceeding with local backup:", err);
     }
 
     // Always persist to localStorage for instant tracking in My Reports
@@ -465,7 +467,7 @@ const ReportScam = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
               <div className="input-group">
                 <label>Mobile Number</label>
-                <input type="tel" value={formData.mobile} onChange={e => setFormData({...formData, mobile: e.target.value})} required placeholder="10-digit number" />
+                <input type="tel" pattern="[0-9]{10}" maxLength="10" title="Please enter a valid 10-digit mobile number" value={formData.mobile} onChange={e => setFormData({...formData, mobile: e.target.value.replace(/\D/g, '')})} required placeholder="10-digit mobile number" />
               </div>
               <div className="input-group">
                 <label>Email (Optional)</label>

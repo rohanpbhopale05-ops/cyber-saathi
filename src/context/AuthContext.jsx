@@ -27,15 +27,15 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user || null);
-      checkRole(session?.user?.id);
+      await checkRole(session?.user?.id);
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user || null);
-      checkRole(session?.user?.id);
+      await checkRole(session?.user?.id);
     });
 
     return () => subscription.unsubscribe();

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock } from 'lucide-react';
 import Button from '../components/Button';
@@ -19,9 +19,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Redirect if already logged in
-  if (user) {
-    navigate('/my-reports');
-  }
+  useEffect(() => {
+    if (user) {
+      navigate('/my-reports');
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -139,7 +141,7 @@ const Login = () => {
               </div>
               <div className="input-group">
                 <label>Mobile Number</label>
-                <input type="tel" value={mobile} onChange={e => setMobile(e.target.value)} required={!isLogin} placeholder="10-digit number" />
+                <input type="tel" pattern="[0-9]{10}" maxLength="10" title="Please enter a valid 10-digit mobile number" value={mobile} onChange={e => setMobile(e.target.value.replace(/\D/g, ''))} required={!isLogin} placeholder="10-digit number" />
               </div>
             </>
           )}
@@ -150,7 +152,7 @@ const Login = () => {
           </div>
           <div className="input-group">
             <label>Password</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} required minLength="6" placeholder="Minimum 6 characters" />
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} required minLength="8" placeholder="Minimum 8 characters" />
           </div>
           
           <Button type="submit" variant="primary" style={{ width: '100%', marginTop: '1.5rem', padding: '1.2rem', fontSize: '1.25rem', borderRadius: '999px' }} disabled={isLoading}>

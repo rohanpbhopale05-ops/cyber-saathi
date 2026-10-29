@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
   ShieldAlert, 
@@ -20,29 +20,94 @@ const CheckScam = () => {
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const analyzeInput = () => {
     setIsAnalyzing(true);
     setResult(null);
 
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       let riskScore = 0;
       let reasons = [];
       let recommendation = "";
 
       if (activeTab === 'phone') {
-        const suspiciousPrefixes = ['+92', '+44', '140', '111'];
-        if (suspiciousPrefixes.some(prefix => inputValue.startsWith(prefix))) {
+        const cleanNumber = inputValue.replace(/[\s\-\(\)\.]/g, '');
+        const digitsOnly = cleanNumber.replace(/\D/g, '');
+
+        // 1. Check known reported scam numbers from community database & demo data
+        const localReports = JSON.parse(localStorage.getItem('cyberSaathiReports') || '[]');
+        const reportedNumbers = localReports.map(r => r.phone_number?.replace(/[\s\-\(\)\.]/g, '')).filter(Boolean);
+        const demoKnownScamNumbers = [
+          '9876543210', '9823456789', '8001234567', '919876543210', '923001234567', 
+          '447911123456', '2348031234567', '1409283741', '1401234567', '8888888888'
+        ];
+
+        if (reportedNumbers.includes(cleanNumber) || demoKnownScamNumbers.some(d => cleanNumber.endsWith(d) || (digitsOnly && d.endsWith(digitsOnly)))) {
+          riskScore += 90;
+          reasons.push("Number is flagged in community cyber scam reports database");
+        }
+
+        // 2. High-risk international scam prefixes
+        const suspiciousPrefixes = [
+          { prefix: '+92', code: '92', country: 'Pakistan (+92)' },
+          { prefix: '+234', code: '234', country: 'Nigeria (+234)' },
+          { prefix: '+44', code: '44', country: 'UK Virtual (+44)' },
+          { prefix: '+93', code: '93', country: 'Afghanistan (+93)' },
+          { prefix: '+880', code: '880', country: 'Bangladesh (+880)' },
+          { prefix: '+1876', code: '1876', country: 'Jamaica Lottery (+1876)' },
+          { prefix: '+254', code: '254', country: 'Kenya (+254)' }
+        ];
+
+        const matchedPrefix = suspiciousPrefixes.find(p => 
+          cleanNumber.startsWith(p.prefix) || 
+          cleanNumber.startsWith('00' + p.code) || 
+          (cleanNumber.startsWith(p.code) && cleanNumber.length > 10)
+        );
+
+        if (matchedPrefix) {
           riskScore += 80;
-          reasons.push("International or uncommon prefix commonly used in scams");
+          reasons.push('High-risk international prefix: ' + matchedPrefix.country + ' commonly used in cyber fraud');
         }
-        if (inputValue.length < 10 && !inputValue.startsWith('1')) {
+
+        // 3. TRAI Telemarketing / Automated Robocall series in India
+        if (digitsOnly.startsWith('140') || cleanNumber.startsWith('+91140') || cleanNumber.startsWith('140')) {
+          riskScore += 70;
+          reasons.push("TRAI 140 Series: Unsolicited telemarketing / automated robocall block");
+        } else if (digitsOnly.startsWith('160')) {
           riskScore += 50;
-          reasons.push("Number is too short to be a standard mobile number");
+          reasons.push("TRAI 160 Series: Commercial promotional call");
         }
+
+        // 4. Repeated / Dummy / Sequential numbers
+        if (/^(\d)\1{7,}$/.test(digitsOnly)) {
+          riskScore += 75;
+          reasons.push("Spoofed number: Contains repeated identical digits");
+        } else if (digitsOnly === '1234567890' || digitsOnly === '0123456789') {
+          riskScore += 80;
+          reasons.push("Dummy / Sequential spoofed caller ID detected");
+        }
+
+        // 5. Domestic Indian Mobile Format Check
+        if (digitsOnly.length === 10) {
+          if (!['6', '7', '8', '9'].includes(digitsOnly[0])) {
+            riskScore += 50;
+            reasons.push("Invalid mobile format: Indian mobile numbers must start with 6, 7, 8, or 9");
+          }
+        } else if (digitsOnly.length < 10 && !digitsOnly.startsWith('19') && !digitsOnly.startsWith('112') && !digitsOnly.startsWith('1800')) {
+          riskScore += 55;
+          reasons.push("Incomplete phone number: Too short to be a valid mobile number");
+        }
+
         if (riskScore === 0) {
-          riskScore = 10;
-          reasons.push("Standard domestic number format");
+          riskScore = 15;
+          reasons.push("Standard domestic format with no active threat flags");
         }
       }
 
@@ -234,6 +299,7 @@ const CheckScam = () => {
             <textarea 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && e.ctrlKey && handleCheck()}
               placeholder="Paste suspicious SMS, WhatsApp, or email message text here..."
               rows="5"
               style={{ fontSize: '1.25rem', padding: '1.25rem' }}
@@ -243,6 +309,7 @@ const CheckScam = () => {
               type="text" 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleCheck()}
               placeholder={activeTab === 'phone' ? 'Enter phone number (e.g. +91 9876543210 or 140...)' : 'Enter website link (e.g. http://bank-update-kyc.xyz...)'}
               style={{ fontSize: '1.25rem', padding: '1.25rem' }}
             />
