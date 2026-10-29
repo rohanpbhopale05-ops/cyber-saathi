@@ -8,7 +8,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 
-project_dir = r"C:\Users\Rohan Bhopale\Downloads\Cyber Saathi"
+project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 img_path = os.path.join(project_dir, "cyber_saathi_architecture.png")
 docx_path = os.path.join(project_dir, "Cyber_Saathi_Architecture_Diagram.docx")
 
