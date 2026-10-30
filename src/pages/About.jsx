@@ -81,15 +81,6 @@ const About = () => {
             <h3 style={{ fontSize: '1.6rem', margin: '0 0 0.6rem 0', color: '#F8FAFC', fontWeight: '800' }}>Sakshi Badgujar</h3>
             <span className="glass-capsule" style={{ fontSize: '0.85rem', padding: '0.25rem 0.85rem' }}>Team Member</span>
           </div>
-
-          <div className="glass-card slide-up" style={{ padding: '2.2rem 1.8rem', animationDelay: '0.3s', borderTop: '4px solid var(--red-security)' }}>
-            <div className="glass-icon-box" style={{ width: '52px', height: '52px', borderRadius: '16px', margin: '0 auto 1.2rem', color: 'var(--red-security)', borderColor: 'var(--border-red)' }}>
-              <Code size={28} />
-            </div>
-            
-            <span className="glass-capsule" style={{ fontSize: '0.85rem', padding: '0.25rem 0.85rem' }}>Team Member</span>
-          </div>
-
         </div>
       </div>
 
