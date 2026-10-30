@@ -5,6 +5,7 @@ import {
   ShieldCheck, 
   AlertTriangle, 
   AlertOctagon, 
+  AlertCircle,
   Smartphone, 
   Link as LinkIcon, 
   MessageSquare,
@@ -49,7 +50,7 @@ const CheckScam = () => {
           '447911123456', '2348031234567', '1409283741', '1401234567', '8888888888'
         ];
 
-        if (reportedNumbers.includes(cleanNumber) || demoKnownScamNumbers.some(d => cleanNumber.endsWith(d) || (digitsOnly && d.endsWith(digitsOnly)))) {
+        if (reportedNumbers.includes(cleanNumber) || demoKnownScamNumbers.some(d => cleanNumber.endsWith(d) || (digitsOnly && digitsOnly.endsWith(d)))) {
           riskScore += 90;
           reasons.push("Number is flagged in community cyber scam reports database");
         }
@@ -299,7 +300,7 @@ const CheckScam = () => {
             <textarea 
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && e.ctrlKey && handleCheck()}
+              onKeyDown={(e) => e.key === 'Enter' && handleCheck()}
               placeholder="Paste suspicious SMS, WhatsApp, or email message text here..."
               rows="5"
               style={{ fontSize: '1.25rem', padding: '1.25rem' }}
