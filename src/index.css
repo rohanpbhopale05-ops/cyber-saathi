@@ -1,1157 +1,1146 @@
-:root {
-  /* Futuristic Cybersecurity Palette */
-  --bg-deep: #050816;
-  --bg-navy: #0B1226;
-  --bg-card: rgba(11, 18, 38, 0.10);
-  --bg-card-hover: rgba(15, 23, 42, 0.18);
-  --bg-capsule: rgba(255, 255, 255, 0.06);
-  --bg-capsule-hover: rgba(255, 255, 255, 0.14);
-  --bg-alt: rgba(11, 18, 38, 0.10);
-
-  /* Signature Cyber Accents */
-  --blue-electric: #1677FF;
-  --cyan-highlight: #22D3EE;
-  --orange-signal: #FF7A18;
-  --red-security: #FF3B30;
-
-  /* Semantic Theme Mappings */
-  --primary: #FF3B30; /* Security Alert Red */
-  --primary-light: #FF7A18; /* Signal Orange */
-  --secondary: #22D3EE; /* Cyan Highlight */
-  --secondary-blue: #1677FF; /* Electric Blue */
-  
-  --low-risk: #10B981; /* Verified Safe Green */
-  --warning: #FF7A18; /* Threat Warning Orange */
-  --high-risk: #FF3B30; /* Critical Danger Red */
-  --danger: #FF3B30;
-
-  /* Senior-friendly high-contrast typography */
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --text: #F8FAFC;
-  --text-light: #CBD5E1;
-
-  /* Glass borders & luminous glows */
-  --border-glass: rgba(255, 255, 255, 0.14);
-  --border-glass-bright: rgba(255, 255, 255, 0.28);
-  --border-cyan: rgba(34, 211, 238, 0.4);
-  --border-orange: rgba(255, 122, 24, 0.4);
-  --border-red: rgba(255, 59, 48, 0.45);
-
-  --glow-cyan: 0 0 25px rgba(34, 211, 238, 0.3);
-  --glow-orange: 0 0 25px rgba(255, 122, 24, 0.3);
-  --glow-red: 0 0 25px rgba(255, 59, 48, 0.35);
-  --glow-blue: 0 0 25px rgba(22, 119, 255, 0.3);
-
-  --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.5);
-  --shadow-capsule: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--bg-deep);
-  color: var(--text-primary);
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Helvetica, Arial, sans-serif;
-  position: relative;
-  overflow-x: hidden;
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   1. CYBERSECURITY AMBIENT LIGHTING & CIRCUIT-BOARD PATTERNS
-   ========================================================================== */
-
-/* Ambient background is handled dynamically by CyberBackground component */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -3;
-  background-color: var(--bg-deep);
-}
-
-/* Subtle Micro-Grid Overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.07;
-  background-image: 
-    radial-gradient(rgba(34, 211, 238, 0.4) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px, 80px 80px, 80px 80px;
-}
-
-/* ==========================================================================
-   2. GLASSMORPHISM CAPSULES & CARDS
-   ========================================================================== */
-
-/* Glass Capsules (Pill-shaped with border-radius: 999px) */
-.glass-capsule {
-  background: var(--bg-capsule);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-glass);
-  border-radius: 999px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0.55rem 1.25rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.glass-capsule {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: 999px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.35);
-  color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0.55rem 1.25rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.glass-capsule:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
-  border-color: var(--border-glass-bright);
-  border-top-color: #FFFFFF;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.3), inset 0 1.5px 2px rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  color: #ffffff;
-}
-
-.glass-capsule-cyan {
-  border-color: var(--border-cyan);
-}
-.glass-capsule-cyan:hover {
-  border-color: var(--cyan-highlight);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), var(--glow-cyan);
-}
-
-.glass-capsule-orange {
-  border-color: var(--border-orange);
-}
-.glass-capsule-orange:hover {
-  border-color: var(--orange-signal);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), var(--glow-orange);
-}
-
-.glass-capsule-red {
-  border-color: var(--border-red);
-}
-.glass-capsule-red:hover {
-  border-color: var(--red-security);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), var(--glow-red);
-}
-
-/* Rounded Rectangular Glass Cards with High-Definition Refraction (90% Transparent) */
-.glass-card, .card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(11, 18, 38, 0.10) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-top: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-radius: 22px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35), inset 0 1.5px 2px rgba(255, 255, 255, 0.22);
-  padding: 2.2rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-card:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 18, 38, 0.15) 100%);
-  border-color: var(--border-glass-bright);
-  border-top-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.45), 0 0 30px rgba(34, 211, 238, 0.15), inset 0 1.5px 2px rgba(255, 255, 255, 0.35);
-}
-
-/* Subtle glass highlight sheen */
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
-  transition: left 0.8s ease;
-  pointer-events: none;
-}
-.glass-card:hover::before {
-  left: 100%;
-}
-
-/* ==========================================================================
-   3. NAVIGATION CAPSULES & RECTANGULAR ICONS
-   ========================================================================== */
-
-/* Rectangular Glass Icon Container inside Navigation & Action Items */
-.glass-icon-box {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.38);
-  color: var(--cyan-highlight);
-  flex-shrink: 0;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Capsule-shaped Navigation Links with border-radius: 999px */
-.nav-link-btn {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 1.12rem;
-  font-weight: 600;
-  padding: 0.42rem 1.05rem;
-  border-radius: 999px; /* Pill Capsule */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.04);
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.nav-link-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border-color: rgba(34, 211, 238, 0.35);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px rgba(34, 211, 238, 0.2);
-  transform: translateY(-2px);
-}
-
-.nav-link-btn:hover .glass-icon-box {
-  background: rgba(34, 211, 238, 0.2);
-  border-color: var(--cyan-highlight);
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4), inset 0 1px 1px #ffffff;
-  transform: scale(1.08);
-}
-
-.nav-link-btn.active {
-  background: rgba(34, 211, 238, 0.15);
-  border-color: var(--cyan-highlight);
-  color: #ffffff;
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-.nav-link-btn.active .glass-icon-box {
-  background: linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight));
-  color: #050816;
-  border-color: var(--cyan-highlight);
-  box-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
-}
-
-/* Emergency Capsule */
-.nav-link-btn.emergency {
-  color: #ffffff;
-  font-weight: 700;
-  background: rgba(255, 59, 48, 0.15);
-  border-color: rgba(255, 59, 48, 0.45);
-  box-shadow: 0 0 18px rgba(255, 59, 48, 0.25);
-}
-
-.nav-link-btn.emergency .glass-icon-box {
-  background: rgba(255, 59, 48, 0.25);
-  border-color: var(--red-security);
-  color: #ffffff;
-  box-shadow: 0 0 12px rgba(255, 59, 48, 0.4);
-}
-
-.nav-link-btn.emergency:hover {
-  background: rgba(255, 59, 48, 0.28);
-  border-color: #ff6b6b;
-  box-shadow: 0 0 25px rgba(255, 59, 48, 0.5);
-}
-
-.nav-link-btn.emergency:hover .glass-icon-box {
-  background: var(--red-security);
-  color: #ffffff;
-  box-shadow: 0 0 20px rgba(255, 59, 48, 0.7);
-}
-
-/* Solid Login / Signup Capsule Button */
-.nav-link-btn.nav-btn-solid {
-  background: linear-gradient(135deg, #FF3B30 0%, #FF7A18 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 6px 20px rgba(255, 59, 48, 0.35);
-  padding: 0.45rem 1.25rem;
-}
-
-.nav-link-btn.nav-btn-solid .glass-icon-box {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-}
-
-.nav-link-btn.nav-btn-solid:hover {
-  background: linear-gradient(135deg, #ff5247 0%, #ff8c33 100%);
-  box-shadow: 0 8px 28px rgba(255, 59, 48, 0.55), 0 0 20px rgba(255, 122, 24, 0.4);
-  transform: translateY(-2px);
-}
-
-/* Header utility buttons (Contrast, Size) */
-.nav-action-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-glass);
-  color: var(--text-primary);
-  padding: 0.42rem 1.05rem;
-  border-radius: 999px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 1.05rem;
-  transition: all 0.25s ease;
-}
-
-.nav-action-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: var(--cyan-highlight);
-  box-shadow: 0 0 16px rgba(34, 211, 238, 0.25);
-  transform: translateY(-1px);
-  color: #ffffff;
-}
-
-.nav-action-btn:hover .glass-icon-box {
-  background: rgba(34, 211, 238, 0.2);
-  border-color: var(--cyan-highlight);
-  color: #ffffff;
-}
-
-/* ==========================================================================
-   4. BUTTONS & INPUTS
-   ========================================================================== */
-
-.btn {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-glass);
-  color: var(--text-primary);
-  font-weight: 700;
-  border-radius: 999px; /* Pill Capsule Default */
-  padding: 0.85rem 1.8rem;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 1.15rem;
-  gap: 10px;
-}
-
-.btn:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: var(--border-glass-bright);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--blue-electric) 0%, var(--cyan-highlight) 100%);
-  color: #050816;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 6px 20px rgba(22, 119, 255, 0.4);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #2b85ff 0%, #4ae0f7 100%);
-  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.55), 0 0 20px rgba(22, 119, 255, 0.4);
-  transform: translateY(-2px);
-  color: #050816;
-}
-
-.btn-danger {
-  background: linear-gradient(135deg, #FF3B30 0%, #FF7A18 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 6px 20px rgba(255, 59, 48, 0.4);
-}
-
-.btn-danger:hover {
-  background: linear-gradient(135deg, #ff5247 0%, #ff8c33 100%);
-  box-shadow: 0 10px 30px rgba(255, 59, 48, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Senior-Friendly Dark Glass Form Inputs */
-.input-group {
-  margin-bottom: 1.5rem;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 0.6rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-size: 1.15rem;
-  letter-spacing: 0.02em;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  font-size: 1.15rem;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-  background: rgba(11, 18, 38, 0.16);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: var(--text-primary);
-  outline: none;
-  transition: all 0.25s ease;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-input::placeholder, textarea::placeholder {
-  color: var(--text-muted);
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--cyan-highlight);
-  background: rgba(15, 23, 42, 0.28);
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.1);
-}
-
-/* ==========================================================================
-   5. HERO SECTION & CYBER LOCK HUD VISUAL
-   ========================================================================== */
-
-.hero-container {
-  position: relative;
-  text-align: center;
-  padding: 4.5rem 1.5rem 3rem;
-  margin-bottom: 4rem;
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-/* The Glowing Digital Lock & Cyber Circuit Backdrop */
-.hero-cyber-backdrop {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.08) 0%, rgba(11, 18, 38, 0.3) 60%, transparent 80%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-/* Concentric Glowing HUD Rings around Central Shield Anchor */
-.cyber-hud-lock {
-  position: relative;
-  width: 144px;
-  height: 144px;
-  margin: 0 auto 2.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cyber-hud-ripple {
-  position: absolute;
-  inset: -15px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(34, 211, 238, 0.4);
-  animation: hudRipplePulse 6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
-  pointer-events: none;
-}
-
-@keyframes hudRipplePulse {
-  0% { transform: scale(0.7); opacity: 0.8; }
-  60% { opacity: 0.25; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-.cyber-hud-ring-outer {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px dashed rgba(34, 211, 238, 0.55);
-  animation: rotateClockwise 26s linear infinite;
-  box-shadow: 0 0 25px rgba(34, 211, 238, 0.3), inset 0 0 15px rgba(34, 211, 238, 0.15);
-}
-
-.cyber-hud-ring-inner {
-  position: absolute;
-  inset: 14px;
-  border-radius: 50%;
-  border: 2px dotted rgba(255, 122, 24, 0.65);
-  animation: rotateCounterClockwise 18s linear infinite;
-  box-shadow: inset 0 0 20px rgba(255, 122, 24, 0.2);
-}
-
-.cyber-hud-icon-core {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  border-radius: 22px;
-  background: rgba(11, 18, 38, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.8px solid var(--cyan-highlight);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 35px rgba(34, 211, 238, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.5);
-  animation: lockCoreBreathe 3.5s ease-in-out infinite alternate;
-  overflow: hidden;
-}
-
-@keyframes lockCoreBreathe {
-  0% {
-    box-shadow: 0 0 25px rgba(34, 211, 238, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.4);
-    border-color: rgba(34, 211, 238, 0.6);
-  }
-  100% {
-    box-shadow: 0 0 45px rgba(34, 211, 238, 0.65), 0 0 20px rgba(255, 255, 255, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.8);
-    border-color: #FFFFFF;
-  }
-}
-
-.cyber-hud-core-sweep {
-  position: absolute;
-  inset: -100%;
-  background: linear-gradient(
-    115deg, 
-    transparent 40%, 
-    rgba(255, 255, 255, 0.55) 50%, 
-    transparent 60%
-  );
-  animation: lockCoreSweep 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  pointer-events: none;
-}
-
-@keyframes lockCoreSweep {
-  0%, 70% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
-  80% { opacity: 0.9; }
-  90%, 100% { transform: translateX(150%) rotate(25deg); opacity: 0; }
-}
-
-@keyframes rotateClockwise {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes rotateCounterClockwise {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
-
-/* Glass Capsule Hero Buttons */
-.glass-capsule-hero {
-  padding: 0.75rem 1.85rem !important;
-  font-size: 1.15rem !important;
-  border-radius: 999px !important;
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.glass-capsule-hero:hover {
-  transform: translateY(-3px) scale(1.02) !important;
-}
-
-/* Main Action Hero Cards with Tri-Color Glow (90% Transparent) */
-.hero-card-report {
-  border: 1.5px solid var(--border-orange);
-  background: linear-gradient(180deg, rgba(255, 122, 24, 0.08) 0%, rgba(11, 18, 38, 0.10) 100%);
-}
-.hero-card-report:hover {
-  background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.16) 100%);
-  border-color: var(--orange-signal);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-orange);
-  transform: translateY(-4px);
-}
-
-.hero-card-check {
-  border: 1.5px solid var(--border-cyan);
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, rgba(11, 18, 38, 0.10) 100%);
-}
-.hero-card-check:hover {
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.12) 0%, rgba(11, 18, 38, 0.16) 100%);
-  border-color: var(--cyan-highlight);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-cyan);
-  transform: translateY(-4px);
-}
-
-.hero-card-emergency {
-  border: 1.5px solid var(--border-red);
-  background: linear-gradient(180deg, rgba(255, 59, 48, 0.10) 0%, rgba(11, 18, 38, 0.12) 100%);
-  animation: pulseEmergency 3s ease-in-out infinite;
-}
-.hero-card-emergency:hover {
-  background: linear-gradient(180deg, rgba(255, 59, 48, 0.15) 0%, rgba(11, 18, 38, 0.18) 100%);
-  border-color: #ff6b6b;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-red);
-  transform: translateY(-4px);
-}
-
-@keyframes pulseEmergency {
-  0%, 100% {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 59, 48, 0.2);
-  }
-  50% {
-    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 59, 48, 0.45);
-  }
-}
-
-/* ==========================================================================
-   6. CHECK SCAM SCANNER ANIMATIONS
-   ========================================================================== */
-
-.radar-sweep-bar {
-  height: 4px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, var(--cyan-highlight), transparent);
-  box-shadow: 0 0 15px var(--cyan-highlight);
-  animation: scannerLine 1.8s ease-in-out infinite;
-  border-radius: 2px;
-}
-
-@keyframes scannerLine {
-  0% { transform: translateY(-10px); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(120px); opacity: 0; }
-}
-
-/* ==========================================================================
-   7. SENIOR CITIZEN ACCESSIBILITY & HIGH CONTRAST
-   ========================================================================== */
-
-/* Scale root/html so all rem units across cards, headings, and buttons enlarge smoothly */
-html.text-large,
-:root.text-large {
-  font-size: 118%;
-}
-
-html.text-xlarge,
-:root.text-xlarge {
-  font-size: 138%;
-}
-
-.text-large { 
-  font-size: 118%; 
-}
-
-.text-xlarge { 
-  font-size: 138%; 
-}
-
-.high-contrast {
-  --bg-deep: #000000;
-  --bg-navy: #000000;
-  --bg-card: #000000;
-  --bg-capsule: #000000;
-  --text-primary: #FFFFFF;
-  --text-secondary: #FFFFFF;
-  --text-muted: #E2E8F0;
-  --border-glass: #FFFFFF;
-  --border-cyan: #00FFFF;
-  --border-orange: #FFCC00;
-  --border-red: #FF3333;
-}
-
-.high-contrast body::before, 
-.high-contrast body::after,
-.high-contrast .hero-cyber-backdrop {
-  display: none !important;
-}
-
-.high-contrast .glass-card, 
-.high-contrast .card {
-  background: #000000 !important;
-  border: 3px solid #FFFFFF !important;
-  box-shadow: none !important;
-}
-
-.high-contrast .glass-capsule {
-  background: #000000 !important;
-  border: 2px solid #00FFFF !important;
-  color: #FFFFFF !important;
-  box-shadow: none !important;
-}
-
-.high-contrast .glass-icon-box {
-  background: #000000 !important;
-  border: 2px solid #FFFFFF !important;
-  color: #00FFFF !important;
-}
-
-.high-contrast .nav-link-btn {
-  background: #000000 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
-}
-
-.high-contrast .nav-link-btn.active {
-  background: #00FFFF !important;
-  color: #000000 !important;
-  border: 2px solid #00FFFF !important;
-}
-
-.high-contrast .nav-link-btn.emergency {
-  background: #FF0000 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
-}
-
-.high-contrast input, 
-.high-contrast select, 
-.high-contrast textarea {
-  background: #000000 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
-}
-
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  body::before, 
-  .cyber-hud-ring-outer, 
-  .cyber-hud-ring-inner, 
-  .hero-card-emergency,
-  .radar-sweep-bar,
-  .slide-up,
-  .fade-in {
-    animation: none !important;
-    transform: none !important;
-  }
-  .navbar-header {
-    transition: none !important;
-  }
-}
-
-/* Animations */
-@keyframes fadeIn { 
-  from { opacity: 0; } 
-  to { opacity: 1; } 
-}
-
-@keyframes slideUp { 
-  from { opacity: 0; transform: translateY(18px); } 
-  to { opacity: 1; transform: translateY(0); } 
-}
-
-.fade-in { 
-  animation: fadeIn 0.4s ease-out; 
-}
-
-.slide-up { 
-  opacity: 0; 
-  animation: slideUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
-}
-
-
-/* ==========================================================================
-   8. RESPONSIVE & MOBILE-FIRST MEDIA QUERIES
-   ========================================================================== */
-
-/* --- Tablet & below (max-width: 1024px) --- */
-@media (max-width: 1024px) {
-  .hero-container {
-    padding: 3rem 1.2rem 2.5rem;
-    margin-bottom: 3rem;
-    border-radius: 22px;
-  }
-
-  .glass-card, .card {
-    padding: 1.6rem;
-    border-radius: 18px;
-  }
-
-  .nav-link-btn {
-    font-size: 1rem;
-    padding: 0.38rem 0.85rem;
-  }
-}
-
-/* --- Mobile breakpoint (max-width: 768px) --- */
-@media (max-width: 768px) {
-  /* Show hamburger, hide desktop nav & utility */
-  .navbar-hamburger {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .navbar-desktop-nav {
-    display: none !important;
-  }
-
-  .navbar-utility-desktop {
-    display: none !important;
-  }
-
-  .navbar-subtitle-hide {
-    display: none !important;
-  }
-
-  .navbar-badge-hide {
-    display: none !important;
-  }
-
-  .navbar-brand-title {
-    font-size: 1.4rem !important;
-  }
-
-  /* Navbar header compact on mobile */
-  .navbar-header {
-    padding: 0.65rem 1rem !important;
-    margin: 0.5rem auto !important;
-    width: calc(100% - 1rem) !important;
-    border-radius: 16px !important;
-    top: 6px !important;
-  }
-
-  /* Hero section */
-  .hero-container {
-    padding: 2.5rem 1rem 2rem;
-    margin-bottom: 2rem;
-    border-radius: 18px;
-  }
-
-  .cyber-hud-lock {
-    width: 100px !important;
-    height: 100px !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  .cyber-hud-icon-core {
-    width: 64px !important;
-    height: 64px !important;
-    border-radius: 16px !important;
-  }
-
-  /* Glass cards */
-  .glass-card, .card {
-    padding: 1.4rem 1.1rem;
-    border-radius: 16px;
-  }
-
-  .glass-card:hover {
-    transform: none;
-  }
-
-  /* Buttons */
-  .btn {
-    padding: 0.75rem 1.4rem;
-    font-size: 1.05rem;
-  }
-
-  .glass-capsule-hero {
-    padding: 0.6rem 1.3rem !important;
-    font-size: 1rem !important;
-  }
-
-  /* Inputs */
-  input, select, textarea {
-    padding: 0.85rem 1rem;
-    font-size: 1.05rem;
-    border-radius: 12px;
-  }
-
-  /* Footer responsive */
-  footer {
-    padding: 2.5rem 1rem 1.5rem !important;
-  }
-
-  footer > div:first-child {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-
-  /* Nav action buttons - icon only on tablet */
-  .nav-btn-label {
-    display: none;
-  }
-
-  .nav-action-btn {
-    padding: 0.35rem 0.6rem;
-  }
-}
-
-/* --- Small phone (max-width: 480px) --- */
-@media (max-width: 480px) {
-  .navbar-brand-title {
-    font-size: 1.2rem !important;
-  }
-
-  .hero-container {
-    padding: 2rem 0.8rem 1.5rem;
-    border-radius: 14px;
-  }
-
-  .cyber-hud-lock {
-    width: 80px !important;
-    height: 80px !important;
-    margin-bottom: 1.2rem !important;
-  }
-
-  .cyber-hud-icon-core {
-    width: 52px !important;
-    height: 52px !important;
-  }
-
-  .glass-card, .card {
-    padding: 1.2rem 0.9rem;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.18);
-  }
-
-  .glass-capsule {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.9rem;
-    gap: 6px;
-  }
-
-  .glass-capsule-hero {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.92rem !important;
-  }
-
-  .btn {
-    padding: 0.65rem 1.2rem;
-    font-size: 0.95rem;
-    border-radius: 14px;
-  }
-
-  input, select, textarea {
-    padding: 0.75rem 0.85rem;
-    font-size: 1rem;
-    border-radius: 10px;
-  }
-
-  footer {
-    padding: 2rem 0.8rem 1.2rem !important;
-  }
-
-  /* Reduce heavy box-shadows on mobile for performance */
-  .glass-card:hover,
-  .btn:hover,
-  .glass-capsule:hover {
-    transform: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  }
-}
-
-/* --- Extra small phone (max-width: 360px) --- */
-@media (max-width: 360px) {
-  .navbar-brand-title {
-    font-size: 1.05rem !important;
-  }
-
-  .navbar-header {
-    padding: 0.5rem 0.75rem !important;
-  }
-
-  .hero-container {
-    padding: 1.5rem 0.6rem 1.2rem;
-  }
-
-  .glass-card, .card {
-    padding: 1rem 0.75rem;
-    border-radius: 12px;
-  }
-
-  .btn {
-    padding: 0.55rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* --- Desktop wide (min-width: 769px) --- */
-@media (min-width: 769px) {
-  .navbar-hamburger {
-    display: none !important;
-  }
-
-  .mobile-menu-panel,
-  .mobile-menu-backdrop {
-    display: none !important;
-  }
-}
-
-/* ==========================================================================
-   9. TOUCH-FRIENDLY TARGETS (WCAG 2.2 Level AA)
-   ========================================================================== */
-
-@media (pointer: coarse) {
-  .nav-link-btn,
-  .nav-action-btn,
-  .btn,
-  .glass-capsule {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  input, select, textarea {
-    min-height: 48px;
-  }
-
-  /* Remove hover transform effects on touch devices */
-  .glass-card:hover,
-  .btn:hover,
-  .glass-capsule:hover,
-  .nav-link-btn:hover {
-    transform: none;
-  }
-}
-
-/* ==========================================================================
-   10. SAFE AREA INSETS (notched phones, iOS Safari)
-   ========================================================================== */
-
-@supports (padding-top: env(safe-area-inset-top)) {
-  .navbar-header {
-    padding-top: max(0.65rem, env(safe-area-inset-top)) !important;
-  }
-
-  .mobile-menu-panel {
-    padding-top: max(1.5rem, env(safe-area-inset-top));
-    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
-    padding-left: max(1.25rem, env(safe-area-inset-left));
-    padding-right: max(1.25rem, env(safe-area-inset-right));
-  }
-
-  footer {
-    padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
-  }
-}
-
-/* ==========================================================================
-   11. LANDSCAPE MOBILE
-   ========================================================================== */
-
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero-container {
-    padding: 1.5rem 1rem;
-  }
-
-  .cyber-hud-lock {
-    width: 72px !important;
-    height: 72px !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .cyber-hud-icon-core {
-    width: 48px !important;
-    height: 48px !important;
-  }
-
-  .navbar-header {
-    padding: 0.4rem 0.8rem !important;
-  }
-}
-
-/* ==========================================================================
-   12. BACKGROUND PERFORMANCE ON MOBILE
-   ========================================================================== */
-
-@media (max-width: 768px) {
-  .cyber-bg-layer-base {
-    animation-duration: 40s !important;
-  }
-
-  .cyber-ambient-orb {
-    filter: blur(40px) !important;
-  }
-
-  .cyber-orb-left {
-    width: 80vw !important;
-    height: 80vw !important;
-    animation-duration: 20s !important;
-  }
-
-  .cyber-orb-right {
-    width: 80vw !important;
-    height: 80vw !important;
-    animation-duration: 24s !important;
-  }
-
-  .cyber-lock-center-glow {
-    width: 200px !important;
-    height: 200px !important;
-  }
-
-  .cyber-lock-ripple {
-    width: 100px !important;
-    height: 100px !important;
-  }
-
-  .cyber-lock-light-sweep {
-    width: 160px !important;
-    height: 160px !important;
-  }
-}
-
-/* ==========================================================================
-   13. PRINT STYLES
-   ========================================================================== */
-
-@media print {
-  .cyber-background-container,
-  .navbar-header,
-  .mobile-menu-panel,
-  .mobile-menu-backdrop,
-  footer {
-    display: none !important;
-  }
-
-  main {
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .glass-card, .card {
-    background: white !important;
-    border: 1px solid #ccc !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    color: black !important;
-  }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-}
+:root {
+  /* Futuristic Cybersecurity Palette */
+  --bg-deep: #050816;
+  --bg-navy: #0B1226;
+  --bg-card: rgba(11, 18, 38, 0.10);
+  --bg-card-hover: rgba(15, 23, 42, 0.18);
+  --bg-capsule: rgba(255, 255, 255, 0.06);
+  --bg-capsule-hover: rgba(255, 255, 255, 0.14);
+  --bg-alt: rgba(11, 18, 38, 0.10);
+
+  /* Signature Cyber Accents */
+  --blue-electric: #1677FF;
+  --cyan-highlight: #22D3EE;
+  --orange-signal: #FF7A18;
+  --red-security: #FF3B30;
+
+  /* Semantic Theme Mappings */
+  --primary: #FF3B30; /* Security Alert Red */
+  --primary-light: #FF7A18; /* Signal Orange */
+  --secondary: #22D3EE; /* Cyan Highlight */
+  --secondary-blue: #1677FF; /* Electric Blue */
+  
+  --low-risk: #10B981; /* Verified Safe Green */
+  --warning: #FF7A18; /* Threat Warning Orange */
+  --high-risk: #FF3B30; /* Critical Danger Red */
+  --danger: #FF3B30;
+
+  /* Senior-friendly high-contrast typography */
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text: #F8FAFC;
+  --text-light: #CBD5E1;
+
+  /* Glass borders & luminous glows */
+  --border-glass: rgba(255, 255, 255, 0.14);
+  --border-glass-bright: rgba(255, 255, 255, 0.28);
+  --border-cyan: rgba(34, 211, 238, 0.4);
+  --border-orange: rgba(255, 122, 24, 0.4);
+  --border-red: rgba(255, 59, 48, 0.45);
+
+  --glow-cyan: 0 0 25px rgba(34, 211, 238, 0.3);
+  --glow-orange: 0 0 25px rgba(255, 122, 24, 0.3);
+  --glow-red: 0 0 25px rgba(255, 59, 48, 0.35);
+  --glow-blue: 0 0 25px rgba(22, 119, 255, 0.3);
+
+  --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.5);
+  --shadow-capsule: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   1. CYBERSECURITY AMBIENT LIGHTING & CIRCUIT-BOARD PATTERNS
+   ========================================================================== */
+
+/* Ambient background is handled dynamically by CyberBackground component */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -3;
+  background-color: var(--bg-deep);
+}
+
+/* High-Definition Cyber Grid & Coordinate Matrix Texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.095;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(34, 211, 238, 0.55) 1.2px, transparent 0),
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+}
+
+/* ==========================================================================
+   2. HIGH-DEFINITION GLASSMORPHISM CAPSULES & CARDS (PREMIUM TEXTURE)
+   ========================================================================== */
+
+/* Glass Capsules (Pill-shaped with border-radius: 999px) */
+.glass-capsule {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(24px) saturate(190%) contrast(105%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%) contrast(105%);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-top: 1.2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.38);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.55rem 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.glass-capsule:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: var(--border-glass-bright);
+  border-top-color: #FFFFFF;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(34, 211, 238, 0.35), inset 0 1.5px 2px rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.glass-capsule-cyan {
+  border-color: var(--border-cyan);
+}
+.glass-capsule-cyan:hover {
+  border-color: var(--cyan-highlight);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), var(--glow-cyan);
+}
+
+.glass-capsule-orange {
+  border-color: var(--border-orange);
+}
+.glass-capsule-orange:hover {
+  border-color: var(--orange-signal);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), var(--glow-orange);
+}
+
+.glass-capsule-red {
+  border-color: var(--border-red);
+}
+.glass-capsule-red:hover {
+  border-color: var(--red-security);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), var(--glow-red);
+}
+
+/* Rounded Rectangular Glass Cards with High-Definition Refraction & Tactile Texture */
+.glass-card, .card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(11, 18, 38, 0.12) 100%);
+  backdrop-filter: blur(24px) saturate(190%) contrast(105%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%) contrast(105%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.42);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
+  box-shadow: 
+    0 16px 45px rgba(0, 0, 0, 0.42), 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.35);
+  padding: 2.2rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(11, 18, 38, 0.18) 100%);
+  border-color: var(--border-glass-bright);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 
+    0 22px 55px rgba(0, 0, 0, 0.50), 
+    0 0 30px rgba(34, 211, 238, 0.20), 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.45);
+}
+
+/* Subtle glass highlight sheen */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.8s ease;
+  pointer-events: none;
+}
+.glass-card:hover::before {
+  left: 100%;
+}
+
+/* ==========================================================================
+   3. NAVIGATION CAPSULES & RECTANGULAR ICONS
+   ========================================================================== */
+
+/* Rectangular Glass Icon Container inside Navigation & Action Items */
+.glass-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.38);
+  color: var(--cyan-highlight);
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Capsule-shaped Navigation Links with border-radius: 999px */
+.nav-link-btn {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1.12rem;
+  font-weight: 600;
+  padding: 0.42rem 1.05rem;
+  border-radius: 999px; /* Pill Capsule */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px rgba(34, 211, 238, 0.2);
+  transform: translateY(-2px);
+}
+
+.nav-link-btn:hover .glass-icon-box {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: var(--cyan-highlight);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4), inset 0 1px 1px #ffffff;
+  transform: scale(1.08);
+}
+
+.nav-link-btn.active {
+  background: rgba(34, 211, 238, 0.15);
+  border-color: var(--cyan-highlight);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.nav-link-btn.active .glass-icon-box {
+  background: linear-gradient(135deg, var(--blue-electric), var(--cyan-highlight));
+  color: #050816;
+  border-color: var(--cyan-highlight);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
+}
+
+/* Emergency Capsule */
+.nav-link-btn.emergency {
+  color: #ffffff;
+  font-weight: 700;
+  background: rgba(255, 59, 48, 0.15);
+  border-color: rgba(255, 59, 48, 0.45);
+  box-shadow: 0 0 18px rgba(255, 59, 48, 0.25);
+}
+
+.nav-link-btn.emergency .glass-icon-box {
+  background: rgba(255, 59, 48, 0.25);
+  border-color: var(--red-security);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 59, 48, 0.4);
+}
+
+.nav-link-btn.emergency:hover {
+  background: rgba(255, 59, 48, 0.28);
+  border-color: #ff6b6b;
+  box-shadow: 0 0 25px rgba(255, 59, 48, 0.5);
+}
+
+.nav-link-btn.emergency:hover .glass-icon-box {
+  background: var(--red-security);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 59, 48, 0.7);
+}
+
+/* Solid Login / Signup Capsule Button */
+.nav-link-btn.nav-btn-solid {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF7A18 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 59, 48, 0.35);
+  padding: 0.45rem 1.25rem;
+}
+
+.nav-link-btn.nav-btn-solid .glass-icon-box {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.nav-link-btn.nav-btn-solid:hover {
+  background: linear-gradient(135deg, #ff5247 0%, #ff8c33 100%);
+  box-shadow: 0 8px 28px rgba(255, 59, 48, 0.55), 0 0 20px rgba(255, 122, 24, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Header utility buttons (Contrast, Size) */
+.nav-action-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  padding: 0.42rem 1.05rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.25s ease;
+}
+
+.nav-action-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--cyan-highlight);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.25);
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+.nav-action-btn:hover .glass-icon-box {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: var(--cyan-highlight);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   4. BUTTONS & INPUTS
+   ========================================================================== */
+
+.btn {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  font-weight: 700;
+  border-radius: 999px; /* Pill Capsule Default */
+  padding: 0.85rem 1.8rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.15rem;
+  gap: 10px;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--border-glass-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-electric) 0%, var(--cyan-highlight) 100%);
+  color: #050816;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(22, 119, 255, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2b85ff 0%, #4ae0f7 100%);
+  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.55), 0 0 20px rgba(22, 119, 255, 0.4);
+  transform: translateY(-2px);
+  color: #050816;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF7A18 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 59, 48, 0.4);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #ff5247 0%, #ff8c33 100%);
+  box-shadow: 0 10px 30px rgba(255, 59, 48, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Senior-Friendly Dark Glass Form Inputs */
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1.15rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(11, 18, 38, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--cyan-highlight);
+  background: rgba(15, 23, 42, 0.28);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   5. HERO SECTION & CYBER LOCK HUD VISUAL
+   ========================================================================== */
+
+.hero-container {
+  position: relative;
+  text-align: center;
+  padding: 4.5rem 1.5rem 3rem;
+  margin-bottom: 4rem;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+/* The Glowing Digital Lock & Cyber Circuit Backdrop */
+.hero-cyber-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.08) 0%, rgba(11, 18, 38, 0.3) 60%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Concentric Glowing HUD Rings around Central Shield Anchor */
+.cyber-hud-lock {
+  position: relative;
+  width: 144px;
+  height: 144px;
+  margin: 0 auto 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cyber-hud-ripple {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(34, 211, 238, 0.4);
+  animation: hudRipplePulse 6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes hudRipplePulse {
+  0% { transform: scale(0.7); opacity: 0.8; }
+  60% { opacity: 0.25; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.cyber-hud-ring-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed rgba(34, 211, 238, 0.55);
+  animation: rotateClockwise 26s linear infinite;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.3), inset 0 0 15px rgba(34, 211, 238, 0.15);
+}
+
+.cyber-hud-ring-inner {
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  border: 2px dotted rgba(255, 122, 24, 0.65);
+  animation: rotateCounterClockwise 18s linear infinite;
+  box-shadow: inset 0 0 20px rgba(255, 122, 24, 0.2);
+}
+
+.cyber-hud-icon-core {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: rgba(11, 18, 38, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.8px solid var(--cyan-highlight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 35px rgba(34, 211, 238, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  animation: lockCoreBreathe 3.5s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+
+@keyframes lockCoreBreathe {
+  0% {
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    border-color: rgba(34, 211, 238, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 45px rgba(34, 211, 238, 0.65), 0 0 20px rgba(255, 255, 255, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.8);
+    border-color: #FFFFFF;
+  }
+}
+
+.cyber-hud-core-sweep {
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    115deg, 
+    transparent 40%, 
+    rgba(255, 255, 255, 0.55) 50%, 
+    transparent 60%
+  );
+  animation: lockCoreSweep 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes lockCoreSweep {
+  0%, 70% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
+  80% { opacity: 0.9; }
+  90%, 100% { transform: translateX(150%) rotate(25deg); opacity: 0; }
+}
+
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Glass Capsule Hero Buttons */
+.glass-capsule-hero {
+  padding: 0.75rem 1.85rem !important;
+  font-size: 1.15rem !important;
+  border-radius: 999px !important;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-capsule-hero:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+}
+
+/* Main Action Hero Cards with Tri-Color Glow (90% Transparent) */
+.hero-card-report {
+  border: 1.5px solid var(--border-orange);
+  background: linear-gradient(180deg, rgba(255, 122, 24, 0.08) 0%, rgba(11, 18, 38, 0.10) 100%);
+}
+.hero-card-report:hover {
+  background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(11, 18, 38, 0.16) 100%);
+  border-color: var(--orange-signal);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-orange);
+  transform: translateY(-4px);
+}
+
+.hero-card-check {
+  border: 1.5px solid var(--border-cyan);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, rgba(11, 18, 38, 0.10) 100%);
+}
+.hero-card-check:hover {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.12) 0%, rgba(11, 18, 38, 0.16) 100%);
+  border-color: var(--cyan-highlight);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-cyan);
+  transform: translateY(-4px);
+}
+
+.hero-card-emergency {
+  border: 1.5px solid var(--border-red);
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.10) 0%, rgba(11, 18, 38, 0.12) 100%);
+  animation: pulseEmergency 3s ease-in-out infinite;
+}
+.hero-card-emergency:hover {
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.15) 0%, rgba(11, 18, 38, 0.18) 100%);
+  border-color: #ff6b6b;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow-red);
+  transform: translateY(-4px);
+}
+
+@keyframes pulseEmergency {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 59, 48, 0.2);
+  }
+  50% {
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 59, 48, 0.45);
+  }
+}
+
+/* ==========================================================================
+   6. CHECK SCAM SCANNER ANIMATIONS
+   ========================================================================== */
+
+.radar-sweep-bar {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--cyan-highlight), transparent);
+  box-shadow: 0 0 15px var(--cyan-highlight);
+  animation: scannerLine 1.8s ease-in-out infinite;
+  border-radius: 2px;
+}
+
+@keyframes scannerLine {
+  0% { transform: translateY(-10px); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(120px); opacity: 0; }
+}
+
+/* ==========================================================================
+   7. SENIOR CITIZEN ACCESSIBILITY & HIGH CONTRAST
+   ========================================================================== */
+
+/* Scale root/html so all rem units across cards, headings, and buttons enlarge smoothly */
+html.text-large,
+:root.text-large {
+  font-size: 118%;
+}
+
+html.text-xlarge,
+:root.text-xlarge {
+  font-size: 138%;
+}
+
+.text-large { 
+  font-size: 118%; 
+}
+
+.text-xlarge { 
+  font-size: 138%; 
+}
+
+.high-contrast {
+  --bg-deep: #000000;
+  --bg-navy: #000000;
+  --bg-card: #000000;
+  --bg-capsule: #000000;
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFF;
+  --text-muted: #E2E8F0;
+  --border-glass: #FFFFFF;
+  --border-cyan: #00FFFF;
+  --border-orange: #FFCC00;
+  --border-red: #FF3333;
+}
+
+.high-contrast body::before, 
+.high-contrast body::after,
+.high-contrast .hero-cyber-backdrop {
+  display: none !important;
+}
+
+.high-contrast .glass-card, 
+.high-contrast .card {
+  background: #000000 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .glass-capsule {
+  background: #000000 !important;
+  border: 2px solid #00FFFF !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .glass-icon-box {
+  background: #000000 !important;
+  border: 2px solid #FFFFFF !important;
+  color: #00FFFF !important;
+}
+
+.high-contrast .nav-link-btn {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+.high-contrast .nav-link-btn.active {
+  background: #00FFFF !important;
+  color: #000000 !important;
+  border: 2px solid #00FFFF !important;
+}
+
+.high-contrast .nav-link-btn.emergency {
+  background: #FF0000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+.high-contrast input, 
+.high-contrast select, 
+.high-contrast textarea {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  body::before, 
+  .cyber-hud-ring-outer, 
+  .cyber-hud-ring-inner, 
+  .hero-card-emergency,
+  .radar-sweep-bar,
+  .slide-up,
+  .fade-in {
+    animation: none !important;
+    transform: none !important;
+  }
+  .navbar-header {
+    transition: none !important;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+}
+
+@keyframes slideUp { 
+  from { opacity: 0; transform: translateY(18px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+.fade-in { 
+  animation: fadeIn 0.4s ease-out; 
+}
+
+.slide-up { 
+  opacity: 0; 
+  animation: slideUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVE & MOBILE-FIRST MEDIA QUERIES
+   ========================================================================== */
+
+/* --- Tablet & below (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  .hero-container {
+    padding: 3rem 1.2rem 2.5rem;
+    margin-bottom: 3rem;
+    border-radius: 22px;
+  }
+
+  .glass-card, .card {
+    padding: 1.6rem;
+    border-radius: 18px;
+  }
+
+  .nav-link-btn {
+    font-size: 1rem;
+    padding: 0.38rem 0.85rem;
+  }
+}
+
+/* --- Mobile breakpoint (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Show hamburger, hide desktop nav & utility */
+  .navbar-hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-desktop-nav {
+    display: none !important;
+  }
+
+  .navbar-utility-desktop {
+    display: none !important;
+  }
+
+  .navbar-subtitle-hide {
+    display: none !important;
+  }
+
+  .navbar-badge-hide {
+    display: none !important;
+  }
+
+  .navbar-brand-title {
+    font-size: 1.4rem !important;
+  }
+
+  /* Navbar header compact on mobile */
+  .navbar-header {
+    padding: 0.65rem 1rem !important;
+    margin: 0.5rem auto !important;
+    width: calc(100% - 1rem) !important;
+    border-radius: 16px !important;
+    top: 6px !important;
+  }
+
+  /* Hero section */
+  .hero-container {
+    padding: 2.5rem 1rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 18px;
+  }
+
+  .cyber-hud-lock {
+    width: 100px !important;
+    height: 100px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .cyber-hud-icon-core {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Glass cards */
+  .glass-card, .card {
+    padding: 1.4rem 1.1rem;
+    border-radius: 16px;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 1.05rem;
+  }
+
+  .glass-capsule-hero {
+    padding: 0.6rem 1.3rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Inputs */
+  input, select, textarea {
+    padding: 0.85rem 1rem;
+    font-size: 1.05rem;
+    border-radius: 12px;
+  }
+
+  /* Footer responsive */
+  footer {
+    padding: 2.5rem 1rem 1.5rem !important;
+  }
+
+  footer > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Nav action buttons - icon only on tablet */
+  .nav-btn-label {
+    display: none;
+  }
+
+  .nav-action-btn {
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* --- Small phone (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .navbar-brand-title {
+    font-size: 1.2rem !important;
+  }
+
+  .hero-container {
+    padding: 2rem 0.8rem 1.5rem;
+    border-radius: 14px;
+  }
+
+  .cyber-hud-lock {
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .cyber-hud-icon-core {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .glass-card, .card {
+    padding: 1.2rem 0.9rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.18);
+  }
+
+  .glass-capsule {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    gap: 6px;
+  }
+
+  .glass-capsule-hero {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .btn {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+
+  input, select, textarea {
+    padding: 0.75rem 0.85rem;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  footer {
+    padding: 2rem 0.8rem 1.2rem !important;
+  }
+
+  /* Reduce heavy box-shadows on mobile for performance */
+  .glass-card:hover,
+  .btn:hover,
+  .glass-capsule:hover {
+    transform: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* --- Extra small phone (max-width: 360px) --- */
+@media (max-width: 360px) {
+  .navbar-brand-title {
+    font-size: 1.05rem !important;
+  }
+
+  .navbar-header {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  .hero-container {
+    padding: 1.5rem 0.6rem 1.2rem;
+  }
+
+  .glass-card, .card {
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Desktop wide (min-width: 769px) --- */
+@media (min-width: 769px) {
+  .navbar-hamburger {
+    display: none !important;
+  }
+
+  .mobile-menu-panel,
+  .mobile-menu-backdrop {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   9. TOUCH-FRIENDLY TARGETS (WCAG 2.2 Level AA)
+   ========================================================================== */
+
+@media (pointer: coarse) {
+  .nav-link-btn,
+  .nav-action-btn,
+  .btn,
+  .glass-capsule {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  input, select, textarea {
+    min-height: 48px;
+  }
+
+  /* Remove hover transform effects on touch devices */
+  .glass-card:hover,
+  .btn:hover,
+  .glass-capsule:hover,
+  .nav-link-btn:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   10. SAFE AREA INSETS (notched phones, iOS Safari)
+   ========================================================================== */
+
+@supports (padding-top: env(safe-area-inset-top)) {
+  .navbar-header {
+    padding-top: max(0.65rem, env(safe-area-inset-top)) !important;
+  }
+
+  .mobile-menu-panel {
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+
+  footer {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* ==========================================================================
+   11. LANDSCAPE MOBILE
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .cyber-hud-lock {
+    width: 72px !important;
+    height: 72px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .cyber-hud-icon-core {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .navbar-header {
+    padding: 0.4rem 0.8rem !important;
+  }
+}
+
+/* ==========================================================================
+   12. BACKGROUND PERFORMANCE ON MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .cyber-bg-layer-base {
+    animation-duration: 40s !important;
+  }
+
+  .cyber-ambient-orb {
+    filter: blur(40px) !important;
+  }
+
+  .cyber-orb-left {
+    width: 80vw !important;
+    height: 80vw !important;
+    animation-duration: 20s !important;
+  }
+
+  .cyber-orb-right {
+    width: 80vw !important;
+    height: 80vw !important;
+    animation-duration: 24s !important;
+  }
+
+  .cyber-lock-center-glow {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .cyber-lock-ripple {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .cyber-lock-light-sweep {
+    width: 160px !important;
+    height: 160px !important;
+  }
+}
+
+/* ==========================================================================
+   13. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .cyber-background-container,
+  .navbar-header,
+  .mobile-menu-panel,
+  .mobile-menu-backdrop,
+  footer {
+    display: none !important;
+  }
+
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .glass-card, .card {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    color: black !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

@@ -2,8 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import './CyberBackground.css';
 
 /**
- * CyberBackground - Cinematic Animated Cybersecurity Background
+ * CyberBackground - Cinematic Animated Cybersecurity Background with Hi-DPI Texture
  * Features:
+ * - Upscaled 2K background with enhanced micro-contrast and edge sharpness
+ * - HiDPI Retina-ready Canvas (scales dynamically with devicePixelRatio up to 2.5x)
+ * - Micro-noise film grain texture overlay to eliminate color banding
+ * - Fine cryptographic scanline & grid texture
  * - Slow cinematic camera movement (zoom & parallax)
  * - Animated circuit-board traces with red-orange (left) & cyan-blue (right) photon pulses
  * - Ambient dual-energy light flow fields
@@ -37,23 +41,31 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
     if (!ctx) return;
 
     let animationFrameId;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    const resizeCanvas = () => {
+      if (!canvas) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+    };
+
+    resizeCanvas();
 
     const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      resizeCanvas();
       initCircuitsAndParticles();
     };
 
     window.addEventListener('resize', handleResize);
 
-    const isMobile = width < 768;
-
     // --- 1. Circuit Paths & Traveling Photon Pulses ---
-    // Circuit tracks will span horizontally across the top (ceiling perspective)
-    // and bottom (floor perspective), as well as lateral data buses.
     let circuitTracks = [];
     let circuitPulses = [];
 
@@ -206,7 +218,6 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
       if (!path || path.length === 0) return { x: 0, y: 0 };
       if (path.length === 1) return path[0];
 
-      // Calculate total length and segment lengths
       let totalLength = 0;
       const segLengths = [];
       for (let i = 0; i < path.length - 1; i++) {
@@ -239,9 +250,11 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
       const delta = Math.min((currentTime - lastTime) / 1000, 0.1);
       lastTime = currentTime;
 
+      ctx.save();
+      ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
 
-      // A. Draw Circuit Traces & Connection Nodes
+      // A. Draw Circuit Traces & Connection Nodes (Ultra-sharp)
       ctx.lineWidth = 1;
       for (let i = 0; i < circuitTracks.length; i++) {
         const track = circuitTracks[i];
@@ -353,6 +366,7 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
         ctx.restore();
       }
 
+      ctx.restore();
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -376,23 +390,29 @@ const CyberBackground = ({ isSubdued = false, isHighContrast = false }) => {
       {/* 1. Base Wallpaper Layer with Cinematic Zoom & Parallax Movement */}
       <div className="cyber-bg-layer-base"></div>
 
-      {/* 2. Fiery Red-Orange Ambient Light Field (Left Flow) */}
+      {/* 2. Micro-Noise Film Grain Texture Layer (Eliminates color banding & adds tactile depth) */}
+      <div className="cyber-noise-texture"></div>
+
+      {/* 3. Tech Scanline & Matrix Micro-Grid Texture Layer */}
+      <div className="cyber-scanline-texture"></div>
+
+      {/* 4. Fiery Red-Orange Ambient Light Field (Left Flow) */}
       <div className="cyber-ambient-orb cyber-orb-left"></div>
 
-      {/* 3. Electric Blue-Cyan Ambient Light Field (Right Flow) */}
+      {/* 5. Electric Blue-Cyan Ambient Light Field (Right Flow) */}
       <div className="cyber-ambient-orb cyber-orb-right"></div>
 
-      {/* 4. Canvas for Circuit Board Traces, Pulses, Binary Digits, & Dust Particles */}
+      {/* 6. Canvas for Circuit Board Traces, Pulses, Binary Digits, & Dust Particles (HiDPI Sharp) */}
       <canvas ref={canvasRef} className="cyber-bg-canvas" />
 
-      {/* 5. Central Digital Lock Luminous Energy Atmosphere */}
+      {/* 7. Central Digital Lock Luminous Energy Atmosphere */}
       <div className={`cyber-lock-center-glow ${isSubdued ? 'subdued-lock' : ''}`}>
         <div className="cyber-lock-ripple cyber-ripple-1"></div>
         <div className="cyber-lock-ripple cyber-ripple-2"></div>
         <div className="cyber-lock-light-sweep"></div>
       </div>
 
-      {/* 6. Dark Tech Vignette & Color Balance Overlay */}
+      {/* 8. Dark Tech Vignette & Color Balance Overlay */}
       <div className="cyber-vignette-overlay"></div>
     </div>
   );
