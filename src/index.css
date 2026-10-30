@@ -780,3 +780,378 @@ html.text-xlarge,
   opacity: 0; 
   animation: slideUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
 }
+
+
+/* ==========================================================================
+   8. RESPONSIVE & MOBILE-FIRST MEDIA QUERIES
+   ========================================================================== */
+
+/* --- Tablet & below (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  .hero-container {
+    padding: 3rem 1.2rem 2.5rem;
+    margin-bottom: 3rem;
+    border-radius: 22px;
+  }
+
+  .glass-card, .card {
+    padding: 1.6rem;
+    border-radius: 18px;
+  }
+
+  .nav-link-btn {
+    font-size: 1rem;
+    padding: 0.38rem 0.85rem;
+  }
+}
+
+/* --- Mobile breakpoint (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Show hamburger, hide desktop nav & utility */
+  .navbar-hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-desktop-nav {
+    display: none !important;
+  }
+
+  .navbar-utility-desktop {
+    display: none !important;
+  }
+
+  .navbar-subtitle-hide {
+    display: none !important;
+  }
+
+  .navbar-badge-hide {
+    display: none !important;
+  }
+
+  .navbar-brand-title {
+    font-size: 1.4rem !important;
+  }
+
+  /* Navbar header compact on mobile */
+  .navbar-header {
+    padding: 0.65rem 1rem !important;
+    margin: 0.5rem auto !important;
+    width: calc(100% - 1rem) !important;
+    border-radius: 16px !important;
+    top: 6px !important;
+  }
+
+  /* Hero section */
+  .hero-container {
+    padding: 2.5rem 1rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 18px;
+  }
+
+  .cyber-hud-lock {
+    width: 100px !important;
+    height: 100px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .cyber-hud-icon-core {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Glass cards */
+  .glass-card, .card {
+    padding: 1.4rem 1.1rem;
+    border-radius: 16px;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.4rem;
+    font-size: 1.05rem;
+  }
+
+  .glass-capsule-hero {
+    padding: 0.6rem 1.3rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Inputs */
+  input, select, textarea {
+    padding: 0.85rem 1rem;
+    font-size: 1.05rem;
+    border-radius: 12px;
+  }
+
+  /* Footer responsive */
+  footer {
+    padding: 2.5rem 1rem 1.5rem !important;
+  }
+
+  footer > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Nav action buttons - icon only on tablet */
+  .nav-btn-label {
+    display: none;
+  }
+
+  .nav-action-btn {
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* --- Small phone (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .navbar-brand-title {
+    font-size: 1.2rem !important;
+  }
+
+  .hero-container {
+    padding: 2rem 0.8rem 1.5rem;
+    border-radius: 14px;
+  }
+
+  .cyber-hud-lock {
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .cyber-hud-icon-core {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .glass-card, .card {
+    padding: 1.2rem 0.9rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.18);
+  }
+
+  .glass-capsule {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    gap: 6px;
+  }
+
+  .glass-capsule-hero {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .btn {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+
+  input, select, textarea {
+    padding: 0.75rem 0.85rem;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  footer {
+    padding: 2rem 0.8rem 1.2rem !important;
+  }
+
+  /* Reduce heavy box-shadows on mobile for performance */
+  .glass-card:hover,
+  .btn:hover,
+  .glass-capsule:hover {
+    transform: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* --- Extra small phone (max-width: 360px) --- */
+@media (max-width: 360px) {
+  .navbar-brand-title {
+    font-size: 1.05rem !important;
+  }
+
+  .navbar-header {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  .hero-container {
+    padding: 1.5rem 0.6rem 1.2rem;
+  }
+
+  .glass-card, .card {
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Desktop wide (min-width: 769px) --- */
+@media (min-width: 769px) {
+  .navbar-hamburger {
+    display: none !important;
+  }
+
+  .mobile-menu-panel,
+  .mobile-menu-backdrop {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   9. TOUCH-FRIENDLY TARGETS (WCAG 2.2 Level AA)
+   ========================================================================== */
+
+@media (pointer: coarse) {
+  .nav-link-btn,
+  .nav-action-btn,
+  .btn,
+  .glass-capsule {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  input, select, textarea {
+    min-height: 48px;
+  }
+
+  /* Remove hover transform effects on touch devices */
+  .glass-card:hover,
+  .btn:hover,
+  .glass-capsule:hover,
+  .nav-link-btn:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   10. SAFE AREA INSETS (notched phones, iOS Safari)
+   ========================================================================== */
+
+@supports (padding-top: env(safe-area-inset-top)) {
+  .navbar-header {
+    padding-top: max(0.65rem, env(safe-area-inset-top)) !important;
+  }
+
+  .mobile-menu-panel {
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+
+  footer {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* ==========================================================================
+   11. LANDSCAPE MOBILE
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .cyber-hud-lock {
+    width: 72px !important;
+    height: 72px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .cyber-hud-icon-core {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .navbar-header {
+    padding: 0.4rem 0.8rem !important;
+  }
+}
+
+/* ==========================================================================
+   12. BACKGROUND PERFORMANCE ON MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .cyber-bg-layer-base {
+    animation-duration: 40s !important;
+  }
+
+  .cyber-ambient-orb {
+    filter: blur(40px) !important;
+  }
+
+  .cyber-orb-left {
+    width: 80vw !important;
+    height: 80vw !important;
+    animation-duration: 20s !important;
+  }
+
+  .cyber-orb-right {
+    width: 80vw !important;
+    height: 80vw !important;
+    animation-duration: 24s !important;
+  }
+
+  .cyber-lock-center-glow {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .cyber-lock-ripple {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .cyber-lock-light-sweep {
+    width: 160px !important;
+    height: 160px !important;
+  }
+}
+
+/* ==========================================================================
+   13. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .cyber-background-container,
+  .navbar-header,
+  .mobile-menu-panel,
+  .mobile-menu-backdrop,
+  footer {
+    display: none !important;
+  }
+
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .glass-card, .card {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    color: black !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
