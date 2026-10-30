@@ -14,7 +14,7 @@ A simple, accessible cyber-safety and scam reporting web portal designed especia
 - **Rohan Bhopale** – Team Leader
 - **Swayam Adik** – Team Member
 - **Sakshi Badgujar** – Team Member
-- **Yash Bhamare** – Team Member
+
 
 ---
 

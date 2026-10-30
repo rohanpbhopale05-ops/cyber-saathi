@@ -192,7 +192,7 @@ p_meta.add_run("PVG's College of Engineering and Technology, Nashik\n")
 p_meta.add_run("Department: ").bold = True
 p_meta.add_run("Department of Information Technology | Savitribai Phule Pune University (SPPU)\n")
 p_meta.add_run("Project Team: ").bold = True
-p_meta.add_run("Rohan Bhopale (Team Leader), Swayam Adik, Sakshi Badgujar, Yash Bhamare\n")
+p_meta.add_run("Rohan Bhopale (Team Leader), Swayam Adik, Sakshi Badgujar\n")
 p_meta.add_run("Repository: ").bold = True
 p_meta.add_run("https://github.com/rohanpbhopale05-ops/cyber-saathi")
 

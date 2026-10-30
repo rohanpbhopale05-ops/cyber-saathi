@@ -86,7 +86,7 @@ const About = () => {
             <div className="glass-icon-box" style={{ width: '52px', height: '52px', borderRadius: '16px', margin: '0 auto 1.2rem', color: 'var(--red-security)', borderColor: 'var(--border-red)' }}>
               <Code size={28} />
             </div>
-            <h3 style={{ fontSize: '1.6rem', margin: '0 0 0.6rem 0', color: '#F8FAFC', fontWeight: '800' }}>Yash Bhamare</h3>
+            
             <span className="glass-capsule" style={{ fontSize: '0.85rem', padding: '0.25rem 0.85rem' }}>Team Member</span>
           </div>
 
